@@ -1,0 +1,35 @@
+
+{
+  "name": "ghoziwaridi/uas_prog-web",
+  "description": "Project UAS Membuat Website Portal Berita",
+  "type": "project",
+  "require": {
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Uas_ProgWeb\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Uas_ProgWeb\\Tests\\": "test/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ghozi Waridi",
+      "email": "ghoziwaridi@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "scripts": {
+    "start": "php -S localhost:8000 -t public",
+    "test": "vendor/bin/phpunit",
+    "add":"python3 generate.py"
+  }
+}
+
