@@ -175,7 +175,7 @@ Berikut adalah struktur folder proyek ini:
 
 ---
 
-### **Struktur Tabel Mysql: **
+### *Struktur Tabel Mysql: *
 1. **Tabel `article`**
    Tabel ini menyimpan data article
    
@@ -221,5 +221,27 @@ Berikut adalah struktur folder proyek ini:
    |----------------|-----------------|--------------------------------------------|
    | `article_id`   | `int(11)`       | ID artikel (Foreign Key ke `article`)      |
    | `category_id`  | `int(11)`       | ID kategori (Foreign Key ke `category`)    |
+
+
+
+   ---
+
+### *Relasi Antar Tabel*
+1.⁠ ⁠*⁠ article ⁠ dan ⁠ article_author ⁠*
+   - Relasi many-to-many antara artikel dan penulis. Tabel ⁠ article_author ⁠ menghubungkan artikel dengan penulisnya.
+   - Relasi ini ditentukan oleh kolom ⁠ article_id ⁠ di ⁠ article_author ⁠ yang merujuk ke ⁠ article.id ⁠ dan ⁠ author_id ⁠ yang merujuk ke ⁠ author.id ⁠.
+
+2.⁠ ⁠*⁠ article ⁠ dan ⁠ article_category ⁠*
+   - Relasi many-to-many antara artikel dan kategori. Tabel ⁠ article_category ⁠ menghubungkan artikel dengan kategori yang relevan.
+   - Relasi ini ditentukan oleh kolom ⁠ article_id ⁠ di ⁠ article_category ⁠ yang merujuk ke ⁠ article.id ⁠ dan ⁠ category_id ⁠ yang merujuk ke ⁠ category.id ⁠.
+
+3.⁠ ⁠*⁠ article ⁠ dan ⁠ author ⁠*
+   - Artikel dapat ditulis oleh banyak penulis, dan seorang penulis bisa menulis banyak artikel, yang dibantu oleh tabel ⁠ article_author ⁠.
+
+4.⁠ ⁠*⁠ article ⁠ dan ⁠ category ⁠*
+   - Setiap artikel dapat memiliki banyak kategori, dan setiap kategori bisa memiliki banyak artikel, yang dibantu oleh tabel ⁠ article_category ⁠.
+
+---
+
 
 
