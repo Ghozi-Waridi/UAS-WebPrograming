@@ -16,7 +16,7 @@ Website ini memiliki berbagai fitur untuk memudahkan pengguna mengakses berita d
 
 Pastikan kamu memiliki hal-hal berikut sebelum memulai:
 
-- [PHP](https://www.php.net/downloads) >= 7.4 (untuk proyek berbasis PHP)
+- [PHP](https://www.php.net/downloads) >= 8.4.5 (untuk proyek berbasis PHP)
 - [Composer](https://getcomposer.org/) - untuk mengelola dependensi
 
 ## Instalasi
