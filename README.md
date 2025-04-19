@@ -63,20 +63,28 @@ Berikut adalah struktur folder proyek ini:
 
 ```
 .
-├── .git/               # Folder Git yang menyimpan informasi versi kontrol
-├── .idea/              # Folder konfigurasi IDE (misalnya IntelliJ, PhpStorm) - tidak perlu di-*track* oleh Git
-├── assets/             # Folder untuk file statis seperti gambar, CSS, dan JavaScript
-│   ├── css/            # Berisi file CSS untuk desain tampilan website
-│   ├── js/             # Berisi file JavaScript untuk interaktivitas
+├── assets/             # Folder untuk file statis seperti gambar\
 │   └── images/         # Berisi gambar-gambar yang digunakan di halaman web
 ├── config/             # Folder untuk file konfigurasi seperti koneksi database dan pengaturan aplikasi
 │   └── database.php    # Konfigurasi untuk menghubungkan ke database MySQL
 ├── public/             # Folder untuk file yang dapat diakses oleh pengguna, seperti file HTML dan index.php
+│   ├── css/            # Berisi file CSS untuk desain tampilan website
+│   ├── js/             # Berisi file JavaScript untuk interaktivitas
 │   └── index.php       # Halaman utama website yang menampilkan daftar berita
 ├── src/                # Folder untuk kode sumber utama (logika aplikasi)
-│   ├── controllers/    # Mengelola logika aplikasi (misalnya, pengambilan berita dari database)
-│   ├── models/         # Berisi file PHP untuk mendefinisikan struktur data dan berinteraksi dengan database
-│   └── views/          # Berisi template untuk menampilkan data, seperti halaman berita, kategori, dll.
+│   ├── constants/      # Folder string static sebagai path icons
+|   │    ├── icons/     # Berisi string statis path icons
+│   |    ├── image/     # Berisi string static image  
+│   |    └── Router/    # Folder untuk 
+|   │    |    ├── router.php/   # Mengelola rute aplikasi, mengarahkan permintaan ke controller yang sesuai.
+│   |    |    └── web.php/      # Berisi konfigurasi untuk routing atau pengaturan URL.
+│   ├── features/               # Folder ini berisi bagian aplikasi yang mengelola fitur utama seperti pengelolaan berita, kategori, dll.
+│   │    ├── controllers/       # Mengelola logika aplikasi (seperti pengambilan data)
+│   │    ├── models/            # Berisi file untuk mendefinisikan struktur data dan berinteraksi dengan database
+│   │    └── views/             # Template tampilan untuk menampilkan data
+│   ├── service/        # Berisi layanan atau fungsionalitas tambahan yang mendukung aplikasi.
+│   ├── shared/         # Folder untuk kode yang digunakan secara bersama (misalnya fungsi umum)
+│   └── main.php/       # File utama yang menjalankan aplikasi atau aplikasi entry point
 ├── test/               # Folder untuk file pengujian atau unit test aplikasi
 ├── vendor/             # Folder yang berisi dependensi (diinstal melalui Composer) - tidak perlu di-*track* oleh Git
 ├── .gitignore          # File untuk menentukan file/folder yang tidak perlu dimasukkan ke dalam kontrol versi Git
@@ -86,35 +94,91 @@ Berikut adalah struktur folder proyek ini:
 
 ### **Penjelasan Setiap Folder:**
 
-1. **`.git/`**  
-   Merupakan folder yang dibuat oleh Git untuk menyimpan informasi tentang kontrol versi.
+Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang kamu berikan:
 
-2. **`.idea/`**  
-   Folder konfigurasi IDE (misalnya PhpStorm atau IntelliJ) yang berisi pengaturan proyek yang bersifat lokal.
+---
 
-3. **`assets/`**  
-   Folder ini menyimpan file-file statis seperti gambar, file CSS, dan JavaScript yang digunakan di halaman web.
+### **Struktur Folder dan Penjelasan:**
 
-4. **`config/`**  
-   Menyimpan file konfigurasi aplikasi, seperti pengaturan koneksi ke database.
+```
+.
+├── assets/             # Folder untuk file statis seperti gambar
+│   └── images/         # Berisi gambar-gambar yang digunakan di halaman web
+```
+- **`assets/`**: Folder ini menyimpan semua file statis yang digunakan oleh aplikasi, seperti gambar, CSS, dan JavaScript.
+- **`images/`**: Berisi gambar-gambar yang digunakan untuk konten di halaman web (misalnya, logo, gambar artikel, dll.).
 
-5. **`public/`**  
-   Merupakan folder yang dapat diakses oleh pengguna, tempat di mana file HTML utama dan entry point aplikasi berada.
+---
 
-6. **`src/`**  
-   Tempat untuk kode sumber aplikasi yang berisi kontroler, model, dan tampilan.
+```
+├── config/             # Folder untuk file konfigurasi seperti koneksi database dan pengaturan aplikasi
+│   └── database.php    # Konfigurasi untuk menghubungkan ke database MySQL
+```
+- **`config/`**: Folder ini berisi file-file konfigurasi untuk aplikasi.
+- **`database.php`**: File konfigurasi untuk mengatur penghubungan aplikasi dengan database MySQL (misalnya, mengatur username, password, dan nama database).
 
-7. **`test/`**  
-   Berisi unit test untuk menguji setiap bagian dari aplikasi.
+---
 
-8. **`vendor/`**  
-   Folder ini berisi dependensi aplikasi yang diinstal menggunakan Composer.
+```
+├── public/             # Folder untuk file yang dapat diakses oleh pengguna, seperti file HTML dan index.php
+│   ├── css/            # Berisi file CSS untuk desain tampilan website
+│   ├── js/             # Berisi file JavaScript untuk interaktivitas
+│   └── index.php       # Halaman utama website yang menampilkan daftar berita
+```
+- **`public/`**: Ini adalah folder yang diakses langsung oleh pengguna melalui browser. Semua file yang bisa diakses oleh pengguna (seperti halaman HTML atau PHP) harus ada di sini.
+- **`css/`**: Folder ini berisi file CSS yang digunakan untuk mendesain dan mengatur tampilan website.
+- **`js/`**: Folder ini berisi file JavaScript yang memberikan interaktivitas pada website (misalnya, fungsi untuk mengubah konten dinamis, mengatur tampilan halaman, dll.).
+- **`index.php`**: Halaman utama dari website yang menampilkan daftar berita atau konten lainnya.
 
-9. **`.gitignore`**  
-   File yang berfungsi untuk mengabaikan file atau folder yang tidak perlu dimasukkan ke dalam Git (seperti `vendor/`).
+---
 
-10. **`composer.json` dan `composer.lock`**  
-    Digunakan untuk mengelola dependensi PHP dengan Composer.
+```
+├── src/                # Folder untuk kode sumber utama (logika aplikasi)
+│   ├── constants/      # Folder string static sebagai path icons
+│   │    ├── icons/     # Berisi string statis path icons
+│   │    ├── image/     # Berisi string static image  
+│   │    └── Router/    # Folder untuk 
+│   │    |    ├── router.php/   #    
+│   │    |    └── web.php/      #
+│   ├── features/       # Folder untuk fitur-fitur utama aplikasi
+│   │    ├── controllers/       # Mengelola logika aplikasi (seperti pengambilan data)
+│   │    ├── models/            # Berisi file untuk mendefinisikan struktur data dan berinteraksi dengan database
+│   │    └── views/             # Template tampilan untuk menampilkan data
+│   ├── service/        # Berisi layanan atau fungsionalitas tambahan yang mendukung aplikasi
+│   ├── shared/         # Folder untuk kode yang digunakan secara bersama (misalnya fungsi umum)
+│   └── main.php/       # File utama yang menjalankan aplikasi atau aplikasi entry point
+```
+
+
+---
+
+```
+├── test/               
+```
+- **`test/`**: Folder ini berisi file pengujian atau unit tests untuk memastikan setiap bagian aplikasi berjalan dengan benar. Misalnya, untuk menguji controller atau model agar data yang diambil atau diproses sesuai dengan yang diharapkan.
+
+---
+
+```
+├── vendor/             
+```
+- **`vendor/`**: Folder ini berisi dependensi eksternal yang diinstal menggunakan Composer (misalnya library PHP atau package pihak ketiga). Folder ini tidak perlu dimasukkan ke dalam repositori Git, karena dapat diinstal kembali oleh setiap pengembang yang menggunakan perintah `composer install`.
+
+---
+
+```
+├── .gitignore          
+```
+- **`.gitignore`**: File ini digunakan untuk mengabaikan file atau folder tertentu agar tidak dimasukkan ke dalam repositori Git, seperti `vendor/`, file log, atau file konfigurasi lokal.
+
+---
+
+```
+├── composer.json       
+└── composer.lock       
+```
+- **`composer.json`**: File konfigurasi untuk Composer, yang mendefinisikan dependensi PHP yang dibutuhkan aplikasi. 
+- **`composer.lock`**: File ini mengunci versi dari dependensi yang digunakan dalam proyek, untuk memastikan bahwa setiap pengembang menggunakan versi dependensi yang sama.
 
 ---
 
