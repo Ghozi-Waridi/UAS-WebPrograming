@@ -176,23 +176,23 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 ### **Struktur Tabel Mysql: **
-1. **Tabel article:**
+1. **Tabel `article`**
    Tabel ini menyimpan data article
-   | *Kolom*    | *Tipe Data*        | *Deskripsi*                      |
-|--------------|----------------------|------------------------------------|
-| ⁠ id ⁠         | int(11)              | ID unik artikel (Primary Key)     |
-| ⁠ date ⁠       | varchar(20)          | Tanggal artikel                   |
-| ⁠ title ⁠      | varchar(255)         | Judul artikel                     |
-| ⁠ content ⁠    | text NOT NULL        | Isi artikel                       |
-| ⁠ picture ⁠    | varchar(255)         | Nama file gambar (opsional)       |
+   | **Kolom** | **Tipe Data**        | **Deskripsi**                      |
+   |-----------|----------------------|------------------------------------|
+   | `id`      | `int(11)`            | ID unik artikel (Primary Key)     |
+   | `date`    | `varchar(20)`        | Tanggal artikel                   |
+   | `title`   | `varchar(255)`       | Judul artikel                     |
+   | `content` | `text NOT NULL`      | Isi artikel                       |
+   | `picture` | `varchar(255)`       | Nama file gambar (opsional)       |
 
-3. **Tabel author**
+3. **Tabel `author`**
    Tabel ini menyimpan data penulis article
-4. **Category**
+4. **Tabel `Category`**
    Tabel ini menyimpan kategori article
-5. **Tabel aritcle_author**
+5. **Tabel `aritcle_author`**
    Tabel ini menghubungkan tabel article dan author
-6. **Tabel article_category**
+6. **Tabel `article_category`**
    Tabel ini menghubungkan tabel article dan category
 
 
