@@ -56,8 +56,8 @@ Ikuti langkah-langkah ini untuk mengatur proyek secara lokal.
     ```bash
     http://localhost:8000
 
-    
-## Struktur Proyek
+### **Struktur Folder dan Penjelasan:**
+## Struktur Folder
 
 Berikut adalah struktur folder proyek ini:
 
@@ -91,14 +91,7 @@ Berikut adalah struktur folder proyek ini:
 ├── composer.json       # File konfigurasi Composer untuk mengelola dependensi PHP
 └── composer.lock       # File yang mengunci versi dependensi agar konsisten di berbagai lingkungan
 ```
-
-### **Penjelasan Setiap Folder:**
-
-Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang kamu berikan:
-
----
-
-### **Struktur Folder dan Penjelasan:**
+### **Penjelasan:**
 
 ```
 .
@@ -181,4 +174,25 @@ Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang k
 - **`composer.lock`**: File ini mengunci versi dari dependensi yang digunakan dalam proyek, untuk memastikan bahwa setiap pengembang menggunakan versi dependensi yang sama.
 
 ---
+
+### **Struktur Tabel Mysql: **
+1. **Tabel article:**
+   Tabel ini menyimpan data article
+   | *Kolom*    | *Tipe Data*        | *Deskripsi*                      |
+|--------------|----------------------|------------------------------------|
+| ⁠ id ⁠         | int(11)              | ID unik artikel (Primary Key)     |
+| ⁠ date ⁠       | varchar(20)          | Tanggal artikel                   |
+| ⁠ title ⁠      | varchar(255)         | Judul artikel                     |
+| ⁠ content ⁠    | text NOT NULL        | Isi artikel                       |
+| ⁠ picture ⁠    | varchar(255)         | Nama file gambar (opsional)       |
+
+3. **Tabel author**
+   Tabel ini menyimpan data penulis article
+4. **Category**
+   Tabel ini menyimpan kategori article
+5. **Tabel aritcle_author**
+   Tabel ini menghubungkan tabel article dan author
+6. **Tabel article_category**
+   Tabel ini menghubungkan tabel article dan category
+
 
