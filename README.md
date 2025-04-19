@@ -102,7 +102,7 @@ Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang k
 
 ```
 .
-├── assets/             # Folder untuk file statis seperti gambar
+├── assets/             # Folder untuk file statis seperti gambar\
 │   └── images/         # Berisi gambar-gambar yang digunakan di halaman web
 ```
 - **`assets/`**: Folder ini menyimpan semua file statis yang digunakan oleh aplikasi, seperti gambar, CSS, dan JavaScript.
@@ -135,16 +135,16 @@ Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang k
 ```
 ├── src/                # Folder untuk kode sumber utama (logika aplikasi)
 │   ├── constants/      # Folder string static sebagai path icons
-│   │    ├── icons/     # Berisi string statis path icons
-│   │    ├── image/     # Berisi string static image  
-│   │    └── Router/    # Folder untuk 
-│   │    |    ├── router.php/   #    
-│   │    |    └── web.php/      #
-│   ├── features/       # Folder untuk fitur-fitur utama aplikasi
+|   │    ├── icons/     # Berisi string statis path icons
+│   |    ├── image/     # Berisi string static image  
+│   |    └── Router/    # Folder untuk 
+|   │    |    ├── router.php/   # Mengelola rute aplikasi, mengarahkan permintaan ke controller yang sesuai.
+│   |    |    └── web.php/      # Berisi konfigurasi untuk routing atau pengaturan URL.
+│   ├── features/               # Folder ini berisi bagian aplikasi yang mengelola fitur utama seperti pengelolaan berita, kategori, dll.
 │   │    ├── controllers/       # Mengelola logika aplikasi (seperti pengambilan data)
 │   │    ├── models/            # Berisi file untuk mendefinisikan struktur data dan berinteraksi dengan database
 │   │    └── views/             # Template tampilan untuk menampilkan data
-│   ├── service/        # Berisi layanan atau fungsionalitas tambahan yang mendukung aplikasi
+│   ├── service/        # Berisi layanan atau fungsionalitas tambahan yang mendukung aplikasi.
 │   ├── shared/         # Folder untuk kode yang digunakan secara bersama (misalnya fungsi umum)
 │   └── main.php/       # File utama yang menjalankan aplikasi atau aplikasi entry point
 ```
@@ -153,29 +153,29 @@ Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang k
 ---
 
 ```
-├── test/               
+├── test/               # Folder untuk file pengujian atau unit test aplikasi               
 ```
 - **`test/`**: Folder ini berisi file pengujian atau unit tests untuk memastikan setiap bagian aplikasi berjalan dengan benar. Misalnya, untuk menguji controller atau model agar data yang diambil atau diproses sesuai dengan yang diharapkan.
 
 ---
 
 ```
-├── vendor/             
+├── vendor/             # Folder yang berisi dependensi (diinstal melalui Composer) - tidak perlu di-*track* oleh Git
 ```
 - **`vendor/`**: Folder ini berisi dependensi eksternal yang diinstal menggunakan Composer (misalnya library PHP atau package pihak ketiga). Folder ini tidak perlu dimasukkan ke dalam repositori Git, karena dapat diinstal kembali oleh setiap pengembang yang menggunakan perintah `composer install`.
 
 ---
 
 ```
-├── .gitignore          
+├── .gitignore          # File untuk menentukan file/folder yang tidak perlu dimasukkan ke dalam kontrol versi Git
 ```
 - **`.gitignore`**: File ini digunakan untuk mengabaikan file atau folder tertentu agar tidak dimasukkan ke dalam repositori Git, seperti `vendor/`, file log, atau file konfigurasi lokal.
 
 ---
 
 ```
-├── composer.json       
-└── composer.lock       
+├── composer.json       # File konfigurasi Composer untuk mengelola dependensi PHP
+└── composer.lock       # File yang mengunci versi dependensi agar konsisten di berbagai lingkungan       
 ```
 - **`composer.json`**: File konfigurasi untuk Composer, yang mendefinisikan dependensi PHP yang dibutuhkan aplikasi. 
 - **`composer.lock`**: File ini mengunci versi dari dependensi yang digunakan dalam proyek, untuk memastikan bahwa setiap pengembang menggunakan versi dependensi yang sama.
