@@ -1,6 +1,6 @@
 # Website Portal Berita
 
-Portal Berita ABC adalah sebuah situs web yang menyediakan informasi terkini mengenai berbagai topik. Website ini dibuat sebagai bagian dari Ujian Akhir Semester pada mata kuliah Pemrograman Web, dengan tujuan untuk memahami dan mengimplementasikan konsep-konsep dasar dalam pengembangan web dinamis.
+Portal Berita NusantaraIN adalah sebuah situs web yang menyediakan informasi terkini mengenai berbagai topik. Website ini dibuat sebagai bagian dari Ujian Akhir Semester pada mata kuliah Pemrograman Web, dengan tujuan untuk memahami dan mengimplementasikan konsep-konsep dasar dalam pengembangan web dinamis.
 
 Website ini memiliki berbagai fitur untuk memudahkan pengguna mengakses berita dengan cepat dan mudah, serta memberikan pengalaman membaca yang nyaman melalui antarmuka yang sederhana dan responsif.
 
