@@ -187,6 +187,8 @@ Berikut adalah struktur folder proyek ini:
    | `content` | `text NOT NULL`      | Isi artikel                       |
    | `picture` | `varchar(255)`       | Nama file gambar (opsional)       |
 
+   ---
+
 3. **Tabel `author`**
    Tabel ini menyimpan data penulis article
    
@@ -196,8 +198,10 @@ Berikut adalah struktur folder proyek ini:
    | `nickname`  | `varchar(100)`    | Nama panggilan penulis                    |
    | `email`     | `varchar(150)`    | Email penulis                             |
    | `password`  | `varchar(255)`    | Kata sandi penulis                        |
+
+   ---
    
-4. **Tabel `Category`**
+5. **Tabel `Category`**
    Tabel ini menyimpan kategori article
    
    | **Kolom**   | **Tipe Data**     | **Deskripsi**                              |
@@ -205,7 +209,8 @@ Berikut adalah struktur folder proyek ini:
    | `id`        | `int(11)`         | ID unik kategori (Primary Key)            |
    | `name`      | `varchar(100)`    | Nama kategori                             |
    | `description`      | `text NULL`    | Deskripsi kategori                             |
-   
+
+   ---
 6. **Tabel `aritcle_author`**
    Tabel ini menghubungkan tabel article dan author
    
@@ -214,7 +219,8 @@ Berikut adalah struktur folder proyek ini:
    | `article_id` | `int(11)`       | ID artikel (Foreign Key ke `article`)      |
    | `author_id`  | `int(11)`       | ID penulis (Foreign Key ke `author`)       |
    
-7. **Tabel `article_category`**
+   ---
+8. **Tabel `article_category`**
    Tabel ini menghubungkan tabel article dan category
    
    | **Kolom**      | **Tipe Data**   | **Deskripsi**                              |
