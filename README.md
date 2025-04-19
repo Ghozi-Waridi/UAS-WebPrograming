@@ -178,6 +178,7 @@ Berikut adalah struktur folder proyek ini:
 ### **Struktur Tabel Mysql: **
 1. **Tabel `article`**
    Tabel ini menyimpan data article
+   
    | **Kolom** | **Tipe Data**        | **Deskripsi**                      |
    |-----------|----------------------|------------------------------------|
    | `id`      | `int(11)`            | ID unik artikel (Primary Key)     |
@@ -188,11 +189,37 @@ Berikut adalah struktur folder proyek ini:
 
 3. **Tabel `author`**
    Tabel ini menyimpan data penulis article
+   
+   | **Kolom**   | **Tipe Data**     | **Deskripsi**                              |
+   |-------------|-------------------|--------------------------------------------|
+   | `id`        | `int(11)`         | ID unik penulis (Primary Key)             |
+   | `nickname`  | `varchar(100)`    | Nama panggilan penulis                    |
+   | `email`     | `varchar(150)`    | Email penulis                             |
+   | `password`  | `varchar(255)`    | Kata sandi penulis                        |
+   
 4. **Tabel `Category`**
    Tabel ini menyimpan kategori article
-5. **Tabel `aritcle_author`**
+   
+   | **Kolom**   | **Tipe Data**     | **Deskripsi**                              |
+   |-------------|-------------------|--------------------------------------------|
+   | `id`        | `int(11)`         | ID unik kategori (Primary Key)            |
+   | `name`      | `varchar(100)`    | Nama kategori                             |
+   | `description`      | `text NULL`    | Deskripsi kategori                             |
+   
+6. **Tabel `aritcle_author`**
    Tabel ini menghubungkan tabel article dan author
-6. **Tabel `article_category`**
+   
+   | **Kolom**    | **Tipe Data**   | **Deskripsi**                              |
+   |--------------|-----------------|--------------------------------------------|
+   | `article_id` | `int(11)`       | ID artikel (Foreign Key ke `article`)      |
+   | `author_id`  | `int(11)`       | ID penulis (Foreign Key ke `author`)       |
+   
+7. **Tabel `article_category`**
    Tabel ini menghubungkan tabel article dan category
+   
+   | **Kolom**      | **Tipe Data**   | **Deskripsi**                              |
+   |----------------|-----------------|--------------------------------------------|
+   | `article_id`   | `int(11)`       | ID artikel (Foreign Key ke `article`)      |
+   | `category_id`  | `int(11)`       | ID kategori (Foreign Key ke `category`)    |
 
 
