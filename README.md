@@ -182,12 +182,3 @@ Tentu! Berikut adalah penjelasan untuk setiap bagian dari struktur folder yang k
 
 ---
 
-### **Kontribusi**
-
-Jika kamu ingin berkontribusi pada proyek ini, silakan ikuti langkah-langkah berikut:
-
-1. Fork repositori ini.
-2. Buat branch baru untuk fitur atau perbaikan yang ingin kamu buat.
-3. Commit perubahan yang kamu buat.
-4. Kirim pull request dengan deskripsi perubahan yang jelas.
-
