@@ -42,9 +42,9 @@ Ikuti langkah-langkah ini untuk mengatur proyek secara lokal.
    ```bash
    <?php
    $dbHost = 'localhost';
-   $dbName = 'portal_berita';
-   $dbUser = 'root';
-   $dbPass = '';
+   $dbName = 'db_name_anda';
+   $dbUser = 'user_db_anda';
+   $dbPass = 'pass_db_anda';
 
 8. **Jalankan Aplikasi di Server Lokal:**
    
