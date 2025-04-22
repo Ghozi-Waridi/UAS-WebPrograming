@@ -1,6 +1,4 @@
-# Nama : Ahmad Ghozi Waridi 
-# NIM : 230605110083
-# Kelas : Pemograman Web B
+# Nama : Ahmad Ghozi Waridi <br> NIM : 230605110083 <br> Kelas : Pemograman Web B
 ---
 
 # Website Portal Berita
