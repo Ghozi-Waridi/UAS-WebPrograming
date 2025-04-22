@@ -1,3 +1,8 @@
+# Nama : Ahmad Ghozi Waridi 
+# NIM : 230605110083
+# Kelas : Pemograman Web B
+---
+
 # Website Portal Berita
 
 Portal Berita NusantaraIN adalah sebuah situs web yang menyediakan informasi terkini mengenai berbagai topik. Website ini dibuat sebagai bagian dari Ujian Akhir Semester pada mata kuliah Pemrograman Web, dengan tujuan untuk memahami dan mengimplementasikan konsep-konsep dasar dalam pengembangan web dinamis.
