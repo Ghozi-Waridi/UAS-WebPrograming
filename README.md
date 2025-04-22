@@ -29,11 +29,11 @@ Ikuti langkah-langkah ini untuk mengatur proyek secara lokal.
 1. **Clone repositori ini:**
 
    ```bash
-   git clone https://github.com/username/proyek-anda.git
+   git clone https://github.com/Ghozi-Waridi/UAS-WebPrograming.git
 2. **Masuk ke direktori proyek:**
    
       ```bash
-   cd proyek-anda
+   cd UAS-WebPrograming
 
 4. **Install dependensi dengan Composer:**
 
