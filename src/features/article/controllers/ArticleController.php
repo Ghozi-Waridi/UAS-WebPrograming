@@ -7,7 +7,7 @@ use Uas_ProgWeb\features\Article\models\Article as ModelsArticle;
 
 class ArticleController
 {
-  private $articleModel;
+  private $articxxleModel;
 
   public function __construct(PDO $pdo)
   {

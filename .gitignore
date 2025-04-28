@@ -1,0 +1,13 @@
+
+# Folder dan file dari IDE
+.idea/
+
+# File sistem macOS
+.DS_Store
+
+# Folder vendor (Composer dependencies)
+vendor/
+
+# File Composer Lock (opsional, tergantung keputusan tim)
+ composer.lock
+ node_modules/
