@@ -85,8 +85,6 @@ Berikut adalah struktur folder proyek ini:
 │   │    ├── controllers/       # Mengelola logika aplikasi (seperti pengambilan data)
 │   │    ├── models/            # Berisi file untuk mendefinisikan struktur data dan berinteraksi dengan database
 │   │    └── views/             # Template tampilan untuk menampilkan data
-│   ├── service/        # Berisi layanan atau fungsionalitas tambahan yang mendukung aplikasi.
-│   ├── shared/         # Folder untuk kode yang digunakan secara bersama (misalnya fungsi umum)
 │   └── main.php/       # File utama yang menjalankan aplikasi atau aplikasi entry point
 ├── test/               # Folder untuk file pengujian atau unit test aplikasi
 ├── vendor/             # Folder yang berisi dependensi (diinstal melalui Composer) - tidak perlu di-*track* oleh Git
