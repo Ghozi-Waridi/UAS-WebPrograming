@@ -19,10 +19,10 @@ $content = isset($content) ? $content : '';
   <header class="bg-white shadow-md py-4">
     <div class="container mx-auto flex justify-between items-center px-6">
       <div class="text-2xl font-bold text-gray-800">
-        <a href="#" class="text-gray-900 hover:text-indigo-600">NusantaraIN</a>
+        <a href="/" class="text-gray-900 hover:text-indigo-600">NusantaraIN</a>
       </div>
       <nav class="space-x-6">
-        <a href="#" class="text-gray-600 hover:text-indigo-300 hover:bg-blue-200 p-3 rounded-lg">Beranda</a>
+        <a href="/" class="text-gray-600 hover:text-indigo-300 hover:bg-blue-200 p-3 rounded-lg">Beranda</a>
         <a href="#" class="text-gray-600 hover:text-indigo-300 hover:bg-blue-200 p-3 rounded-lg">Kategori</a>
         <a href="#" class="text-gray-600 hover:text-indigo-300 hover:bg-blue-200 p-3 rounded-lg">Tentang</a>
         <a href="#" class="text-gray-600 hover:text-indigo-300 hover:bg-blue-200 p-3 rounded-lg">Kontak</a>

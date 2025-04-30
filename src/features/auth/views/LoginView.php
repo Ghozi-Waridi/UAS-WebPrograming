@@ -35,13 +35,15 @@ header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
     <!-- Link to Registration Page -->
     <p class="mt-4 text-center">Don't have an account? <a href="/singup" class="text-blue-500">Register</a></p>
   </div>
+<script type="text/javascript">
+    if (window.history && window.history.pushState) {
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, null, window.location.href);
+    };
+  }
+</script>
 </div>
 
 <!-- Tambahkan JavaScript di bawah ini -->
-<script type="text/javascript">
-  // Pastikan pengguna tidak bisa kembali ke halaman login setelah login
-  if (window.history && window.history.pushState) {
-    window.history.pushState('forward', null, window.location.href);
-    window.history.forward();
-  }
-</script>
+

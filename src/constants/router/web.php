@@ -14,6 +14,7 @@ Router::add('GET', '/', HomeController::class, 'index');
 Router::add('POST', '/', HomeController::class, 'index');
 Router::add('GET', '/detail/(\d+)', DetailArticleController::class, "index");
 Router::add('GET', '/profile', ProfileController::class, 'index');
+Router::add('POST', '/profile', ProfileController::class, 'store');
 Router::add('GET', '/login', AuthController::class, 'showLoginForm');
 Router::add('POST', '/login', AuthController::class, 'login');
 Router::add('GET', '/logout', AuthController::class, 'logout');

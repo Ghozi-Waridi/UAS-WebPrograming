@@ -50,7 +50,7 @@ class AuthController
     if (isset($_SESSION['user_id'])) {
 
       header('Location: /');
-      exit;
+      exit();
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -62,7 +62,7 @@ class AuthController
 
       if ($user) {
         if (password_verify($password, $user['password'])) {
-
+          /* if ($user['password'] === $password) { */
           $_SESSION['user_id'] = $user['id'];
           $_SESSION['email'] = $user['email'];
 
