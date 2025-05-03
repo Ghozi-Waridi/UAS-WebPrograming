@@ -41,4 +41,4 @@ class Auth
       return "Error during signup!";
     }
   }
-}
+ }

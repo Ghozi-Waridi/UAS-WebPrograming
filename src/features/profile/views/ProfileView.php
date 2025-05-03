@@ -71,7 +71,19 @@
     <div class="bg-white rounded-lg shadow-lg p-8">
       <h2 class="text-2xl font-semibold text-gray-800 mb-6">Profile Picture</h2>
       <div class="flex justify-center mb-6">
-        <img src="/uploads/profile/<?= htmlspecialchars($profileUser['image']) ?>" class="object-cover rounded-full border-4 border-gray-300 w-32 h-32" alt="Profile Picture">
+
+
+        <?php
+        if (isset($profileUser['image']) && !empty($_SESSION['imageProfile'])):
+        ?>
+          <img src="/uploads/profile/<?= htmlspecialchars($profileUser['image']) ?>" class="object-cover rounded-full border-4 border-gray-300 w-32 h-32" alt="Profile Picture">
+        <?php else: ?>
+          <!-- Fallback image if session imageProfile is not set -->
+          <img src="/uploads/profile/profile.png" alt="Profile Picture" class="object-cover rounded-full border-4 border-gray-300 w-32 h-32">
+        <?php endif; ?>
+
+
+
       </div>
 
       <!-- Password Change Form -->
@@ -113,8 +125,9 @@
 
   <!-- User Articles Section -->
   <div class="mt-20 mb-10">
-    <div class="bg-white p-5 rounded-xl shadow-lg">
+    <div class="flex bg-white p-5 rounded-xl shadow-lg">
       <p class="text-lg text-gray-600 font-medium">Your Articles:</p>
+      <a href="/create" class="ml-auto bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Create New Article</a>
     </div>
 
     <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

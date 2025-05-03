@@ -61,7 +61,7 @@ class AuthController
 
 
       $user = $this->authModel->getUserByEmail($email);
-
+      $_SESSION['imageProfile'] = $user['image'];
       if ($user) {
         if (password_verify($password, $user['password'])) {
           /* if ($user['password'] === $password) { */
@@ -85,7 +85,11 @@ class AuthController
   public function singup()
 
   {
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
+
+
 
     $nickname = $_POST['username'];
     $email = $_POST['email'];

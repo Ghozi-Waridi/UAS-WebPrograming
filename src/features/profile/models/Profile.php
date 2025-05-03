@@ -34,12 +34,12 @@ class Profile
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function updateProfile($user_id, $nickname, $email, $bio, $url, $password)
+  public function updateProfile($user_id, $nickname, $email, $bio, $url, $password, $image)
   {
     if (empty($password)) {
-      $query = "UPDATE author SET nickname = ?, email = ?, bio = ?, url = ? WHERE id = ?";
+      $query = "UPDATE author SET nickname = ?, email = ?, bio = ?, url = ?, image = ? WHERE id = ?";
       $stmt =  $this->pdo->prepare($query);
-      $stmt->execute([$nickname, $email, $bio, $url, $user_id]);
+      $stmt->execute([$nickname, $email, $bio, $url, $image, $user_id]);
     } 
   }
   public function updatePassword($user_id, $password)

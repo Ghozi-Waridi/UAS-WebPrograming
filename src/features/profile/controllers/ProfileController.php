@@ -42,7 +42,6 @@ class ProfileController
 
   public function store()
   {
-
     if (!isset($_SESSION)) {
       session_start();
     }
@@ -55,10 +54,11 @@ class ProfileController
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $bio = isset($_POST['bio']) ? $_POST['bio'] : '';
     $url = isset($_POST['url']) ? $_POST['url'] : '';
-
-
+    $target = "uploads/profile/";
+    $target = $target . basename($_FILES['profile-picture']['name']);
+    move_uploaded_file($_FILES['profile-picture']['tmp_name'], $target);
+    $_SESSION['imageProfile'] = $_FILES['profile-picture']['name'];
     $password = "";
-
 
     $currentpass = isset($_POST['currentpass']) ? $_POST['currentpass'] : '';
     $newPass = isset($_POST['newpass']) ? $_POST['newpass'] : '';
@@ -72,22 +72,16 @@ class ProfileController
         header('location: /profile');
         exit();
       }
-
-
       if ($newPass !== $confirmPass) {
         $_SESSION['error'] = "Password tidak sama.";
         header('location: /profile');
         exit();
       }
-
-
       if ($currentpass === $newPass) {
         $_SESSION['error'] = "Password tidak boleh sama dengan password lama.";
         header('location: /profile');
         exit();
       }
-
-
       $password = password_hash($newPass, PASSWORD_BCRYPT);
       $this->profileModel->updatePassword($user_id, $password);
 
@@ -107,8 +101,7 @@ class ProfileController
         header('location: /profile');
         exit();
       }
-
-      $this->profileModel->updateProfile($user_id, $nickname, $email, $bio, $url, $password);
+      $this->profileModel->updateProfile($user_id, $nickname, $email, $bio, $url, $password, $_FILES['profile-picture']['name']);
 
       header('location: /profile');
       exit();
