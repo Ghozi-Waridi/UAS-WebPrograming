@@ -22,4 +22,6 @@ class EditorArticleController
 
     require __DIR__ . '/../views/EditorArticleView.php';
   }
+
+  public function store() {}
 }

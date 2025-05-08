@@ -19,7 +19,7 @@ namespace Uas_ProgWeb\features\Dasboard\views;
                 <div>
                   <h3 class="text-gray-500 text-sm font-medium">Total Users</h3>
                   <div class="mt-2 flex items-baseline">
-                    <span class="text-3xl font-semibold text-gray-900">2,453</span>
+                    <span class="text-3xl font-semibold text-gray-900"><?= $totalUsers ?></span>
                                    </div>
                 </div>
                 <div class="rounded-full bg-blue-100 p-3">
@@ -33,7 +33,7 @@ namespace Uas_ProgWeb\features\Dasboard\views;
                 <div>
                   <h3 class="text-gray-500 text-sm font-medium">Total Articles</h3>
                   <div class="mt-2 flex items-baseline">
-                    <span class="text-3xl font-semibold text-gray-900">1,234</span>
+                    <span class="text-3xl font-semibold text-gray-900"><?= $totalArticles ?></span>
 
                   </div>
                 </div>
@@ -48,7 +48,7 @@ namespace Uas_ProgWeb\features\Dasboard\views;
                 <div>
                   <h3 class="text-gray-500 text-sm font-medium">Pending Approval</h3>
                   <div class="mt-2 flex items-baseline">
-                    <span class="text-3xl font-semibold text-gray-900">42</span>
+  <span class="text-3xl font-semibold text-gray-900"><?= $pendingApproval ?></span>
   
                   </div>
                 </div>

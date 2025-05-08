@@ -2,6 +2,7 @@
 
 namespace Uas_ProgWeb\features\Profile\controllers;
 
+use Exception;
 use PDO;
 use Uas_ProgWeb\features\Profile\models\Profile;
 
@@ -33,7 +34,7 @@ class ProfileController
       header('location: /login');
       exit;
     }
-
+    $category = $this->profileModel->getCategory();
     $profileUser = $this->profileModel->getUser($user_id);
     $profileArticle = $this->profileModel->getArticle($user_id);
 
@@ -105,6 +106,61 @@ class ProfileController
 
       header('location: /profile');
       exit();
+    }
+  }
+
+  public function uploadArtikel()
+  {
+    if (!isset($_SESSION)) {
+      session_start();
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $title = isset($_POST['judul']) ? $_POST['judul'] : '';
+      $content = isset($_POST['editor']) ? $_POST['editor'] : '';
+      $picture = isset($_FILES['gambar']) ? $_FILES['gambar'] : null;
+      $category = isset($_POST['kategori']) ? $_POST['kategori'] : '';
+
+
+      if (empty($title) || empty($content)) {
+        throw new Exception("Judul dan Konten tidak boleh kosong.");
+      }
+
+      if ($picture && $picture['error'] == 0) {
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $maxSize = 2 * 1024 * 1024;
+        $fileExtension = strtolower(pathinfo($picture['name'], PATHINFO_EXTENSION));
+
+        if (!in_array($fileExtension, $allowedExtensions)) {
+          throw new Exception("Ekstensi file tidak valid. Hanya file gambar JPG, PNG, dan GIF yang diperbolehkan.");
+        }
+
+        if ($picture['size'] > $maxSize) {
+          throw new Exception("Ukuran file gambar terlalu besar. Maksimum 2MB.");
+        }
+
+
+        $fileName = time() . '_' . basename($picture['name']);
+        $uploadDir = 'uploads/';
+        $targetFile = $uploadDir . $fileName;
+
+
+        if (!move_uploaded_file($picture['tmp_name'], $targetFile)) {
+          throw new Exception("Gagal mengunggah gambar.");
+        }
+      } else {
+
+        $fileName = NULL;
+      }
+      $categoryId = $this->profileModel->getIdByCategory($category);
+      $articleId = $this->profileModel->saveArticle($title, $content, $fileName);
+      $this->profileModel->saveArticleAuthor($articleId, $_SESSION['user_id']);
+      $this->profileModel->saveArticleCategory($articleId, $categoryId['id']);
+      header("location: /profile");
+
+      return $articleId;
+    } else {
+      throw new Exception("Hanya metode POST yang diterima.");
     }
   }
 }

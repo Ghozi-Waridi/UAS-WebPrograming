@@ -24,28 +24,26 @@
          </tr>
        </thead>
        <tbody class="bg-white divide-y divide-gray-200">
-         <!-- User 1 -->
-         <tr>
+
+         <?php foreach ($totalArticleByAuthor as $author) : ?>
+
+                 <tr>
            <td class="px-6 py-4 whitespace-nowrap">
              <div class="flex items-center">
                <div class="flex-shrink-0 h-10 w-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
-                 <span>RA</span>
+                  <img class="h-10 w-10 rounded-full" src="/uploads/profile/<?= $author['image'] ?>" alt="User Image">
                </div>
                <div class="ml-4">
-                 <div class="text-sm font-medium text-gray-900">Raisa Andriana</div>
-                 <div class="text-sm text-gray-500">raisa@example.com</div>
+                 <div class="text-sm font-medium text-gray-900"><?= $author['nickname']  ?></div>
+                 <div class="text-sm text-gray-500"><?= $author['email']  ?></div>
                </div>
              </div>
            </td>
-
-
-
            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-             12
-           </td>
- 
+             <?= $author['total_articles']  ?>           </td> 
          </tr>
-
+         
+          <?php endforeach; ?>
 
        </tbody>
      </table>

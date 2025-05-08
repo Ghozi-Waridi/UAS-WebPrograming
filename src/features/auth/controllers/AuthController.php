@@ -63,16 +63,34 @@ class AuthController
       $user = $this->authModel->getUserByEmail($email);
       $_SESSION['imageProfile'] = $user['image'];
       if ($user) {
-        if (password_verify($password, $user['password'])) {
-          /* if ($user['password'] === $password) { */
-          $_SESSION['user_id'] = $user['id'];
-          $_SESSION['email'] = $user['email'];
+        if ($user['email'] == "admin@gmail.com") {
+
+          if (password_verify($password, $user['password'])) {
+
+            /* if ($user['password'] === $password) { */
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
 
 
-          header('Location: /profile');
-          exit;
+            header('Location: /dashboard');
+            exit;
+          } else {
+            $_SESSION['error'] = 'Password salah!';
+          }
         } else {
-          $_SESSION['error'] = 'Password salah!';
+
+          if (password_verify($password, $user['password'])) {
+
+            /* if ($user['password'] === $password) { */
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+
+
+            header('Location: /profile');
+            exit;
+          } else {
+            $_SESSION['error'] = 'Password salah!';
+          }
         }
       } else {
         $_SESSION['error'] = 'Email tidak ditemukan!';

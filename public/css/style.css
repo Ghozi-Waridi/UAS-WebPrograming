@@ -1,61 +1,40 @@
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.8;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-.main {
-  width: 70%;
-  margin: 20px auto;
-}
-
-header h1 {
-  font-size: 24px;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-header h5,
-header h6 {
-  font-size: 16px;
-  color: #888;
-}
-
-article {
-  padding: 20px;
-  background-color: #fff;
-  margin-top: 20px;
-  text-align: justify;
-  border-radius: 20px;
-}
-
-article .content {
-  margin: auto 5%;
-}
-
-article .content img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 20px;
-}
-
-article .content p {
-  font-size: 1.2em;
-  /* margin-top: 5em; */
-}
-footer {
-  text-align: center;
-  margin-top: 20px;
-  padding: 20px;
-}
+  .modal-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+    }
+    
+    /* Untuk animasi modal */
+    .modal-container {
+      transform: translate(0, -50px);
+      opacity: 0;
+      transition: all 0.3s ease-out;
+    }
+    
+    .modal-container.show {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    
+    /* Mencegah scroll pada body ketika modal terbuka */
+    body.modal-open {
+      overflow: hidden;
+    }
+    
+    /* Style untuk scrollbar modal */
+    .modal-body {
+      scrollbar-width: thin;
+      scrollbar-color: #a0aec0 #edf2f7;
+    }
+    
+    .modal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .modal-body::-webkit-scrollbar-track {
+      background: #edf2f7;
+    }
+    
+    .modal-body::-webkit-scrollbar-thumb {
+      background-color: #a0aec0;
+      border-radius: 3px;
+    }
