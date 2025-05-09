@@ -119,12 +119,11 @@ class ProfileController
       throw new Exception("Hanya metode POST yang diterima.");
     }
 
+    $articleId = isset($_POST['article_id']) ? trim($_POST['article_id']) : '';
     $title = isset($_POST['judul']) ? trim($_POST['judul']) : '';
     $content = isset($_POST['editor']) ? trim($_POST['editor']) : '';
     $picture = isset($_FILES['gambar']) ? $_FILES['gambar'] : null;
     $category = isset($_POST['kategori']) ? trim($_POST['kategori']) : '';
-    print($category);
-    echo $category;
     $errors = [];
 
     // Validate required fields
@@ -154,7 +153,7 @@ class ProfileController
 
       if (empty($errors)) {
         $fileName = time() . '_' . basename($picture['name']);
-        $uploadDir = 'uploads/';
+        $uploadDir = 'Uploads/';
         $targetFile = $uploadDir . $fileName;
 
         if (!move_uploaded_file($picture['tmp_name'], $targetFile)) {
@@ -166,27 +165,26 @@ class ProfileController
     }
 
     // Validate category
-    /* $categoryId = $this->profileModel->getIdByCategory($category); */
-    /* print($categoryId); */
-    /* echo $categoryId; */
     $categoryId = $category;
     if (!$categoryId || !isset($categoryId)) {
       $errors[] = "Kategori tidak valid.";
     }
 
-    // If there are errors, store them and redirect
-    /* if (!empty($errors)) { */
-    /*   $_SESSION['erroreditor'] = implode(" ", $errors); */
-    /*   header("Location: /profile"); */
-    /*   exit; */
-    /* } */
 
-    if (isset($_POST['saveBtn'])) {
-      $articleId = $this->profileModel->saveArticle($title, $content, $fileName, $categoryId);
-      $this->profileModel->saveArticleAuthor($articleId, $_SESSION['user_id']);
-      echo "Data Berhasil Ditmbahkan";
+    if (!empty($errors)) {
+      $_SESSION['erroreditor'] = implode(" ", $errors);
+      header("Location: /profile");
+      exit;
     }
 
+    if ($articleId) {
+      print("Melakukan Update");
+      $this->profileModel->updateArticle($articleId, $title, $content, $fileName, $categoryId);
+    } else {
+      print("Melakukan Penambahan Data");
+      $articleId = $this->profileModel->saveArticle($title, $content, $fileName, $categoryId);
+      $this->profileModel->saveArticleAuthor($articleId, $_SESSION['user_id']);
+    }
 
     header("Location: /profile");
     exit;

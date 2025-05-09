@@ -146,84 +146,83 @@
         </button>
       </div>
 
-      <!-- Modal Body -->
-      <div class="modal-body p-6 max-h-[70vh] overflow-y-auto">
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['erroreditor']) && !empty($_SESSION['erroreditor'])): ?>
-          <div class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg flex items-center space-x-3" role="alert">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-5l-1-1 4-4-4-4 1-1 5 5-5 5z" clip-rule="evenodd" />
-            </svg>
-            <span><?= htmlspecialchars($_SESSION['erroreditor']) ?></span>
-            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-100" onclick="this.parentElement.style.display='none';">
-              <span class="sr-only">Close</span>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-          </div>
-          <?php unset($_SESSION['erroreditor']); ?>
-        <?php endif; ?>
+<!-- Modal Body -->
+<div class="modal-body p-6 max-h-[70vh] overflow-y-auto">
+  <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['erroreditor']) && !empty($_SESSION['erroreditor'])): ?>
+    <div class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg flex items-center space-x-3" role="alert">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-5l-1-1 4-4-4-4 1-1 5 5-5 5z" clip-rule="evenodd" />
+      </svg>
+      <span><?= htmlspecialchars($_SESSION['erroreditor']) ?></span>
+      <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-100" onclick="this.parentElement.style.display='none';">
+        <span class="sr-only">Close</span>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+    <?php unset($_SESSION['erroreditor']); ?>
+  <?php endif; ?>
 
-        <!-- Form untuk mengirim artikel -->
-        <form action="/editing" method="POST" enctype="multipart/form-data" id="articleForm" class="space-y-5">
-          <input type="hidden" name="form_submitted" value="1">
+  <!-- Form untuk mengirim artikel -->
+  <form action="/editing" method="POST" enctype="multipart/form-data" id="articleForm" class="space-y-5">
+    <input type="hidden" name="article_id" id="article_id" value="">
+    <input type="hidden" name="form_submitted" value="1">
 
-          <div>
-            <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul Artikel</label>
-            <input type="text" name="judul" id="judul" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan judul artikel" required>
-          </div>
+    <div>
+      <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul Artikel</label>
+      <input type="text" name="judul" id="judul" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan judul artikel" required>
+    </div>
 
-          <!-- Kategori -->
-          <div>
-            <label for="kategori" class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
-            <div class="relative">
-              <select name="kategori" id="kategori" class="w-full p-3 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" required>
-                <option value="" disabled selected>Pilih kategori</option>
-                <?php foreach ($category as $cat): ?>
-                  <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
-                <?php endforeach; ?>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
-          </div>
-
-          <!-- Upload Gambar -->
-          <div>
-            <label for="gambar" class="block text-gray-700 text-sm font-bold mb-2">Gambar Thumbnail</label>
-            <div class="flex items-center justify-center w-full">
-              <label for="gambar" class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition duration-300">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6" id="upload-placeholder">
-                  <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-3"></i>
-                  <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Klik untuk upload</span> atau seret dan lepas</p>
-                  <p class="text-xs text-gray-500">SVG, PNG, JPG atau GIF (Maks. 2MB)</p>
-                </div>
-                <div id="image-preview" class="hidden w-full h-full">
-                  <img id="preview-img" src="" alt="Preview" class="w-full h-full object-contain">
-                </div>
-                <input id="gambar" name="gambar" type="file" accept="image/*" class="hidden" />
-              </label>
-            </div>
-          </div>
-
-          <!-- Editor Konten -->
-          <div>
-            <label for="editor" class="block text-gray-700 text-sm font-bold mb-2">Konten Artikel</label>
-            <textarea name="editor" id="editor" class="w-full min-h-[250px] p-2 border border-gray-300 rounded-lg" placeholder="Tulis artikel Anda di sini"></textarea>
-          </div>
-
-          <!-- Modal Footer -->
-          <div class="modal-footer py-4 px-6 border-t bg-gray-50 flex justify-end space-x-4">
-            <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
-              Batal
-            </button>
-            <input type="submit" id="saveBtn" name="saveBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
-          </div>
-        </form>
+    <!-- Kategori -->
+    <div>
+      <label for="kategori" class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
+      <div class="relative">
+        <select name="kategori" id="kategori" class="w-full p-3 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" required>
+          <option value="" disabled>Pilih kategori</option>
+          <?php foreach ($category as $cat): ?>
+            <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
+          <?php endforeach; ?>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <i class="fas fa-chevron-down"></i>
+        </div>
       </div>
+    </div>
 
+    <!-- Upload Gambar -->
+    <div>
+      <label for="gambar" class="block text-gray-700 text-sm font-bold mb-2">Gambar Thumbnail</label>
+      <div class="flex items-center justify-center w-full">
+        <label for="gambar" class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition duration-300">
+          <div class="flex flex-col items-center justify-center pt-5 pb-6" id="upload-placeholder">
+            <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-3"></i>
+            <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Klik untuk upload</span> atau seret dan lepas</p>
+            <p class="text-xs text-gray-500">SVG, PNG, JPG atau GIF (Maks. 2MB)</p>
+          </div>
+          <div id="image-preview" class="hidden w-full h-full">
+            <img id="preview-img" src="" alt="Preview" class="w-full h-full object-contain">
+          </div>
+          <input id="gambar" name="gambar" type="file" accept="image/*" class="hidden" />
+        </label>
+      </div>
+    </div>
+
+    <!-- Editor Konten -->
+    <div>
+      <label for="editor" class="block text-gray-700 text-sm font-bold mb-2">Konten Artikel</label>
+      <textarea name="editor" id="editor" class="w-full min-h-[250px] p-2 border border-gray-300 rounded-lg" placeholder="Tulis artikel Anda di sini"></textarea>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer py-4 px-6 border-t bg-gray-50 flex justify-end space-x-4">
+      <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
+        Batal
+      </button>
+      <input type="submit" id="saveBtn" name="saveBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center" value="Simpan">
+    </div>
+  </form>
+</div>
     </div>
   </div>
 
@@ -243,7 +242,10 @@
 
     <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <?php foreach ($profileArticle as $article) : ?>
-        <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl">
+
+
+      <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl">
+   <a href="/detail/<?= $article['id'] ?>">
           <img src="/uploads/<?= htmlspecialchars($article['picture']) ?>" alt="article image" class="w-full h-48 object-cover rounded-t-lg">
           <div class="p-6">
             <h3 class="mt-4 text-xl font-semibold text-gray-800"><?= htmlspecialchars(substr(strip_tags($article['content']), 0, 100)) ?>...</h3>
@@ -253,8 +255,19 @@
                 <?= htmlspecialchars($article['status']) ?>
               </span> <span class="text-gray-400"><?= htmlspecialchars($article['date']) ?></span>
             </div>
+
           </div>
+    </a> 
+<button class="edit-article-btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out m-2" 
+          data-id="<?= $article['id']?>" 
+          data-title="<?= $article['title']?>" 
+          data-content="<?= $article['content'] ?>" 
+          data-picture="/uploads/<?= $article['picture']?>">
+    Edit
+  </button>
+
         </div>
+
       <?php endforeach; ?>
     </div>
   </div>
@@ -262,82 +275,143 @@
 
 
 <script>
-  // Inisialisasi CKEditor
-  let editor;
+// Inisialisasi CKEditor
+let editor;
 
-  // Fungsi untuk membuka modal
-  function openModal() {
-    const modal = document.getElementById('articleModal');
-    const modalContainer = document.querySelector('.modal-container');
-    document.body.classList.add('modal-open');
-    modal.classList.remove('hidden');
+// Fungsi untuk membuka modal
+function openModal(isEdit = false, articleData = {}) {
+  const modal = document.getElementById('articleModal');
+  const modalContainer = document.querySelector('.modal-container');
+  document.body.classList.add('modal-open');
+  modal.classList.remove('hidden');
 
-    // Animasi modal
-    setTimeout(() => {
-      modalContainer.classList.add('show');
-    }, 10);
+  // Animasi modal
+  setTimeout(() => {
+    modalContainer.classList.add('show');
+  }, 10);
 
-    // Inisialisasi CKEditor saat modal dibuka
-    if (!editor) {
-      ClassicEditor
-        .create(document.querySelector('#editor'), {
-          // Konfigurasi tambahan
-          toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
-        })
-        .then(newEditor => {
-          editor = newEditor;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
+  // Inisialisasi CKEditor jika belum ada
+  if (!editor) {
+    ClassicEditor
+      .create(document.querySelector('#editor'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
+      })
+      .then(newEditor => {
+        editor = newEditor;
+        if (isEdit) {
+          populateForm(articleData);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  } else if (isEdit) {
+    populateForm(articleData);
   }
+}
 
-  // Fungsi untuk menutup modal
-  function closeModal() {
-    const modal = document.getElementById('articleModal');
-    const modalContainer = document.querySelector('.modal-container');
-    modalContainer.classList.remove('show');
-
-    // Animasi menutup
-    setTimeout(() => {
-      modal.classList.add('hidden');
-      document.body.classList.remove('modal-open');
-    }, 300);
-  }
-
-  // Event listeners untuk tombol
-  document.getElementById('openModalBtn').addEventListener('click', openModal);
-  document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-  document.getElementById('cancelBtn').addEventListener('click', closeModal);
-
-  // Preview gambar setelah dipilih
-  const inputGambar = document.getElementById('gambar');
+// Fungsi untuk mengisi form dengan data artikel
+function populateForm(articleData) {
+  const articleIdInput = document.getElementById('article_id');
+  const judulInput = document.getElementById('judul');
+  const kategoriSelect = document.getElementById('kategori');
+  const editorTextarea = document.getElementById('editor');
   const previewImg = document.getElementById('preview-img');
   const uploadPlaceholder = document.getElementById('upload-placeholder');
   const imagePreview = document.getElementById('image-preview');
 
-  inputGambar.addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
+  // Isi input
+  articleIdInput.value = articleData.id || '';
+  judulInput.value = articleData.title || '';
+  kategoriSelect.value = articleData.category || '';
 
-      reader.onload = function(e) {
-        previewImg.src = e.target.result;
-        uploadPlaceholder.classList.add('hidden');
-        imagePreview.classList.remove('hidden');
-      }
+  // Isi CKEditor
+  if (editor) {
+    editor.setData(articleData.content || '');
+  } else {
+    editorTextarea.value = articleData.content || '';
+  }
 
-      reader.readAsDataURL(file);
-    }
+  // Tampilkan pratinjau gambar jika ada
+  if (articleData.picture) {
+    previewImg.src = articleData.picture;
+    uploadPlaceholder.classList.add('hidden');
+    imagePreview.classList.remove('hidden');
+  } else {
+    previewImg.src = '';
+    uploadPlaceholder.classList.remove('hidden');
+    imagePreview.classList.add('hidden');
+  }
+}
+
+// Fungsi untuk menutup modal
+function closeModal() {
+  const modal = document.getElementById('articleModal');
+  const modalContainer = document.querySelector('.modal-container');
+  modalContainer.classList.remove('show');
+
+  // Animasi menutup
+  setTimeout(() => {
+    modal.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+  }, 300);
+
+  // Reset form
+  document.getElementById('articleForm').reset();
+  if (editor) {
+    editor.setData('');
+  }
+  const previewImg = document.getElementById('preview-img');
+  const uploadPlaceholder = document.getElementById('upload-placeholder');
+  const imagePreview = document.getElementById('image-preview');
+  previewImg.src = '';
+  uploadPlaceholder.classList.remove('hidden');
+  imagePreview.classList.add('hidden');
+  document.getElementById('article_id').value = '';
+}
+
+// Event listeners untuk tombol
+document.getElementById('openModalBtn').addEventListener('click', () => openModal(false));
+document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+document.getElementById('cancelBtn').addEventListener('click', closeModal);
+
+// Event listener untuk tombol edit
+document.querySelectorAll('.edit-article-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const articleData = {
+      id: button.dataset.id,
+      title: button.dataset.title,
+      content: button.dataset.content,
+      category: button.dataset.category,
+      picture: button.dataset.picture
+    };
+    openModal(true, articleData);
   });
+});
 
-  // Menangani submit form
-  document.getElementById('saveBtn').addEventListener('click', function() {
-    // Bisa diganti dengan AJAX atau kode lain untuk mengirim form
-    document.getElementById('articleForm').submit();
-  });
+// Preview gambar setelah dipilih
+const inputGambar = document.getElementById('gambar');
+const previewImg = document.getElementById('preview-img');
+const uploadPlaceholder = document.getElementById('upload-placeholder');
+const imagePreview = document.getElementById('image-preview');
+
+inputGambar.addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      previewImg.src = e.target.result;
+      uploadPlaceholder.classList.add('hidden');
+      imagePreview.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Menangani submit form
+document.getElementById('saveBtn').addEventListener('click', function() {
+  document.getElementById('articleForm').submit();
+});
 </script>
-
 <?php $profile = ob_get_clean(); ?>
 <?php require __DIR__ . '/../../../main.php'; ?>

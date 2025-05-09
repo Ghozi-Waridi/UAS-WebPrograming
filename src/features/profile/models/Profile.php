@@ -4,6 +4,7 @@ namespace Uas_ProgWeb\features\Profile\models;
 
 use PDO;
 use \IntlDateFormatter;
+use Exception;
 use Uas_ProgWeb\features\Home\models\Home;
 
 class Profile
@@ -115,4 +116,16 @@ class Profile
     $stmt->execute([$title]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
+public function updateArticle($articleId, $title, $content, $fileName, $categoryId)
+{
+  try {
+    $query = "UPDATE articles SET title = ?, content = ?, image = COALESCE(?, image), category_id = ? WHERE id = ?";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute([$title, $content, $fileName, $categoryId, $articleId]);
+    return true;
+  } catch (\PDOException $e) {
+    error_log("Error updating article: " . $e->getMessage());
+    throw new Exception("Gagal memperbarui artikel: " . $e->getMessage());
+  }
+}
 }
