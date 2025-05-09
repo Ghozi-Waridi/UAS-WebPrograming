@@ -15,7 +15,7 @@ class Home
 
   public function getBeritaPilihan()
   {
-    $query = "SELECT * FROM article ORDER BY date DESC LIMIT 5";
+    $query = "SELECT * FROM article WHERE status = 'approved' ORDER BY date DESC LIMIT 5  ;";
     $stmt = $this->pdo->query($query);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }

@@ -60,12 +60,11 @@ class DasboardController
   public function approveArticle()
   {
     $articleId = $_POST['article_id'] ?? null;
-    // Call the model method to approve the article
+
     $isApproved = $this->dasboardModel->approveArticle($articleId);
 
     if ($isApproved) {
-      // Redirect or show success message
-      header('Location: /dashboard'); // Assuming you want to go back to the article approval page
+           header('Location: /dashboard'); // Assuming you want to go back to the article approval page
       exit;
     } else {
       // Handle failure (maybe show an error message)

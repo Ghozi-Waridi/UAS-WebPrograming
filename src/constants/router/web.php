@@ -24,8 +24,7 @@ Router::add('POST', '/login', AuthController::class, 'login');
 Router::add('GET', '/logout', AuthController::class, 'logout');
 Router::add('GET', '/singup', AuthController::class, 'showSingupForm');
 Router::add('POST', '/singup', AuthController::class, 'singup');
-Router::add('GET', '/editor', EditorArticleController::class, 'index');
+/* Router::add('GET', '/editor', EditorArticleController::class, 'index'); */
 Router::add('GET', '/dashboard', DasboardController::class, 'index');
 Router::add('GET', '/dashboard/(\w+)', DasboardController::class, 'loadContent');
 Router::add('POST', '/approveArticle', DasboardController::class, 'approveArticle');
-

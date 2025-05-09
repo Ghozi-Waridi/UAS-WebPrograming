@@ -130,7 +130,9 @@
   <div id="articleModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
     <!-- Overlay -->
     <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
-    
+
+
+
     <!-- Modal Content -->
     <div class="modal-container bg-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-hidden">
       <!-- Modal Header -->
@@ -143,37 +145,51 @@
           <i class="fas fa-times text-xl"></i>
         </button>
       </div>
-      
+
       <!-- Modal Body -->
       <div class="modal-body p-6 max-h-[70vh] overflow-y-auto">
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['erroreditor']) && !empty($_SESSION['erroreditor'])): ?>
+          <div class="mb-6 bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg flex items-center space-x-3" role="alert">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-5l-1-1 4-4-4-4 1-1 5 5-5 5z" clip-rule="evenodd" />
+            </svg>
+            <span><?= htmlspecialchars($_SESSION['erroreditor']) ?></span>
+            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-100" onclick="this.parentElement.style.display='none';">
+              <span class="sr-only">Close</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <?php unset($_SESSION['erroreditor']); ?>
+        <?php endif; ?>
+
         <!-- Form untuk mengirim artikel -->
         <form action="/editing" method="POST" enctype="multipart/form-data" id="articleForm" class="space-y-5">
+          <input type="hidden" name="form_submitted" value="1">
 
           <div>
             <label for="judul" class="block text-gray-700 text-sm font-bold mb-2">Judul Artikel</label>
             <input type="text" name="judul" id="judul" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan judul artikel" required>
           </div>
 
-
-            <!-- Kategori -->
-            <div>
-              <label for="kategori" class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
-              <div class="relative">
-                <select name="kategori" id="kategori" class="w-full p-3 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" required>
-                  <option value="" disabled selected>Pilih kategori</option>
+          <!-- Kategori -->
+          <div>
+            <label for="kategori" class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
+            <div class="relative">
+              <select name="kategori" id="kategori" class="w-full p-3 border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white" required>
+                <option value="" disabled selected>Pilih kategori</option>
                 <?php foreach ($category as $cat): ?>
-                <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
+                  <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
                 <?php endforeach; ?>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <i class="fas fa-chevron-down"></i>
-                </div>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <i class="fas fa-chevron-down"></i>
               </div>
             </div>
-            
+          </div>
 
-
-          
           <!-- Upload Gambar -->
           <div>
             <label for="gambar" class="block text-gray-700 text-sm font-bold mb-2">Gambar Thumbnail</label>
@@ -191,25 +207,22 @@
               </label>
             </div>
           </div>
-          
+
           <!-- Editor Konten -->
           <div>
             <label for="editor" class="block text-gray-700 text-sm font-bold mb-2">Konten Artikel</label>
             <textarea name="editor" id="editor" class="w-full min-h-[250px] p-2 border border-gray-300 rounded-lg" placeholder="Tulis artikel Anda di sini"></textarea>
           </div>
 
-
-      <!-- Modal Footer -->
-      <div class="modal-footer py-4 px-6 border-t bg-gray-50 flex justify-end space-x-4">
-        <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
-          Batal
-        </button>
-        <input type="submit" id="saveBtn" name="saveBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
-       
-      </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer py-4 px-6 border-t bg-gray-50 flex justify-end space-x-4">
+            <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
+              Batal
+            </button>
+            <input type="submit" id="saveBtn" name="saveBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
+          </div>
         </form>
       </div>
-      
 
     </div>
   </div>
@@ -223,9 +236,10 @@
     <div class="flex justify-between bg-white p-5 rounded-xl shadow-lg">
       <p class="text-lg text-gray-600 font-medium">Your Articles:</p>
 
-         <button id="openModalBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
-      <i class="fas fa-plus-circle mr-2"></i> Buat Artikel Baru
-    </button>    </div>
+      <button id="openModalBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
+        <i class="fas fa-plus-circle mr-2"></i> Buat Artikel Baru
+      </button>
+    </div>
 
     <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <?php foreach ($profileArticle as $article) : ?>
@@ -248,82 +262,82 @@
 
 
 <script>
-    // Inisialisasi CKEditor
-    let editor;
-    
-    // Fungsi untuk membuka modal
-    function openModal() {
-      const modal = document.getElementById('articleModal');
-      const modalContainer = document.querySelector('.modal-container');
-      document.body.classList.add('modal-open');
-      modal.classList.remove('hidden');
-      
-      // Animasi modal
-      setTimeout(() => {
-        modalContainer.classList.add('show');
-      }, 10);
-      
-      // Inisialisasi CKEditor saat modal dibuka
-      if (!editor) {
-        ClassicEditor
-          .create(document.querySelector('#editor'), {
-            // Konfigurasi tambahan
-            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
-          })
-          .then(newEditor => {
-            editor = newEditor;
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      }
+  // Inisialisasi CKEditor
+  let editor;
+
+  // Fungsi untuk membuka modal
+  function openModal() {
+    const modal = document.getElementById('articleModal');
+    const modalContainer = document.querySelector('.modal-container');
+    document.body.classList.add('modal-open');
+    modal.classList.remove('hidden');
+
+    // Animasi modal
+    setTimeout(() => {
+      modalContainer.classList.add('show');
+    }, 10);
+
+    // Inisialisasi CKEditor saat modal dibuka
+    if (!editor) {
+      ClassicEditor
+        .create(document.querySelector('#editor'), {
+          // Konfigurasi tambahan
+          toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
+        })
+        .then(newEditor => {
+          editor = newEditor;
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
-    
-    // Fungsi untuk menutup modal
-    function closeModal() {
-      const modal = document.getElementById('articleModal');
-      const modalContainer = document.querySelector('.modal-container');
-      modalContainer.classList.remove('show');
-      
-      // Animasi menutup
-      setTimeout(() => {
-        modal.classList.add('hidden');
-        document.body.classList.remove('modal-open');
-      }, 300);
-    }
-    
-    // Event listeners untuk tombol
-document.getElementById('openModalBtn').addEventListener('click', openModal);
-document.getElementById('closeModalBtn').addEventListener('click', closeModal); 
-document.getElementById('cancelBtn').addEventListener('click', closeModal);
-    
-    // Preview gambar setelah dipilih
-    const inputGambar = document.getElementById('gambar');
-    const previewImg = document.getElementById('preview-img');
-    const uploadPlaceholder = document.getElementById('upload-placeholder');
-    const imagePreview = document.getElementById('image-preview');
-    
-    inputGambar.addEventListener('change', function() {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-          previewImg.src = e.target.result;
-          uploadPlaceholder.classList.add('hidden');
-          imagePreview.classList.remove('hidden');
-        }
-        
-        reader.readAsDataURL(file);
+  }
+
+  // Fungsi untuk menutup modal
+  function closeModal() {
+    const modal = document.getElementById('articleModal');
+    const modalContainer = document.querySelector('.modal-container');
+    modalContainer.classList.remove('show');
+
+    // Animasi menutup
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.classList.remove('modal-open');
+    }, 300);
+  }
+
+  // Event listeners untuk tombol
+  document.getElementById('openModalBtn').addEventListener('click', openModal);
+  document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+  document.getElementById('cancelBtn').addEventListener('click', closeModal);
+
+  // Preview gambar setelah dipilih
+  const inputGambar = document.getElementById('gambar');
+  const previewImg = document.getElementById('preview-img');
+  const uploadPlaceholder = document.getElementById('upload-placeholder');
+  const imagePreview = document.getElementById('image-preview');
+
+  inputGambar.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+        uploadPlaceholder.classList.add('hidden');
+        imagePreview.classList.remove('hidden');
       }
-    });
-    
-    // Menangani submit form
-    document.getElementById('saveBtn').addEventListener('click', function() {
-      // Bisa diganti dengan AJAX atau kode lain untuk mengirim form
-      document.getElementById('articleForm').submit();
-    });
-  </script>
+
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Menangani submit form
+  document.getElementById('saveBtn').addEventListener('click', function() {
+    // Bisa diganti dengan AJAX atau kode lain untuk mengirim form
+    document.getElementById('articleForm').submit();
+  });
+</script>
 
 <?php $profile = ob_get_clean(); ?>
 <?php require __DIR__ . '/../../../main.php'; ?>

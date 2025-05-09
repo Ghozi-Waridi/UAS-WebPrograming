@@ -115,52 +115,82 @@ class ProfileController
       session_start();
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $title = isset($_POST['judul']) ? $_POST['judul'] : '';
-      $content = isset($_POST['editor']) ? $_POST['editor'] : '';
-      $picture = isset($_FILES['gambar']) ? $_FILES['gambar'] : null;
-      $category = isset($_POST['kategori']) ? $_POST['kategori'] : '';
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+      throw new Exception("Hanya metode POST yang diterima.");
+    }
 
+    $title = isset($_POST['judul']) ? trim($_POST['judul']) : '';
+    $content = isset($_POST['editor']) ? trim($_POST['editor']) : '';
+    $picture = isset($_FILES['gambar']) ? $_FILES['gambar'] : null;
+    $category = isset($_POST['kategori']) ? trim($_POST['kategori']) : '';
+    print($category);
+    echo $category;
+    $errors = [];
 
-      if (empty($title) || empty($content)) {
-        throw new Exception("Judul dan Konten tidak boleh kosong.");
+    // Validate required fields
+    if (empty($title)) {
+      $errors[] = "Judul tidak boleh kosong.";
+    }
+    if (empty($content)) {
+      $errors[] = "Konten tidak boleh kosong.";
+    }
+    if (empty($category)) {
+      $errors[] = "Kategori tidak boleh kosong.";
+    }
+
+    // Validate image if provided
+    $fileName = null;
+    if ($picture && $picture['error'] === UPLOAD_ERR_OK) {
+      $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      $maxSize = 2 * 1024 * 1024; // 2MB
+      $fileExtension = strtolower(pathinfo($picture['name'], PATHINFO_EXTENSION));
+
+      if (!in_array($fileExtension, $allowedExtensions)) {
+        $errors[] = "Ekstensi file tidak valid. Hanya file JPG, PNG, dan GIF yang diperbolehkan.";
+      }
+      if ($picture['size'] > $maxSize) {
+        $errors[] = "Ukuran file gambar terlalu besar. Maksimum 2MB.";
       }
 
-      if ($picture && $picture['error'] == 0) {
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        $maxSize = 2 * 1024 * 1024;
-        $fileExtension = strtolower(pathinfo($picture['name'], PATHINFO_EXTENSION));
-
-        if (!in_array($fileExtension, $allowedExtensions)) {
-          throw new Exception("Ekstensi file tidak valid. Hanya file gambar JPG, PNG, dan GIF yang diperbolehkan.");
-        }
-
-        if ($picture['size'] > $maxSize) {
-          throw new Exception("Ukuran file gambar terlalu besar. Maksimum 2MB.");
-        }
-
-
+      if (empty($errors)) {
         $fileName = time() . '_' . basename($picture['name']);
         $uploadDir = 'uploads/';
         $targetFile = $uploadDir . $fileName;
 
-
         if (!move_uploaded_file($picture['tmp_name'], $targetFile)) {
-          throw new Exception("Gagal mengunggah gambar.");
+          $errors[] = "Gagal mengunggah gambar.";
         }
-      } else {
-
-        $fileName = NULL;
       }
-      $categoryId = $this->profileModel->getIdByCategory($category);
-      $articleId = $this->profileModel->saveArticle($title, $content, $fileName);
-      $this->profileModel->saveArticleAuthor($articleId, $_SESSION['user_id']);
-      $this->profileModel->saveArticleCategory($articleId, $categoryId['id']);
-      header("location: /profile");
-
-      return $articleId;
-    } else {
-      throw new Exception("Hanya metode POST yang diterima.");
+    } elseif ($picture && $picture['error'] !== UPLOAD_ERR_NO_FILE) {
+      $errors[] = "Error saat mengunggah gambar.";
     }
+
+    // Validate category
+    /* $categoryId = $this->profileModel->getIdByCategory($category); */
+    /* print($categoryId); */
+    /* echo $categoryId; */
+    $categoryId = $category;
+    if (!$categoryId || !isset($categoryId)) {
+      $errors[] = "Kategori tidak valid.";
+    }
+
+    // If there are errors, store them and redirect
+    /* if (!empty($errors)) { */
+    /*   $_SESSION['erroreditor'] = implode(" ", $errors); */
+    /*   header("Location: /profile"); */
+    /*   exit; */
+    /* } */
+
+    if (isset($_POST['saveBtn'])) {
+      $articleId = $this->profileModel->saveArticle($title, $content, $fileName, $categoryId);
+      $this->profileModel->saveArticleAuthor($articleId, $_SESSION['user_id']);
+      echo "Data Berhasil Ditmbahkan";
+    }
+
+
+    header("Location: /profile");
+    exit;
+
+    return $articleId;
   }
 }

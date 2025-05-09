@@ -3,6 +3,7 @@
 namespace Uas_ProgWeb\features\Profile\models;
 
 use PDO;
+use \IntlDateFormatter;
 use Uas_ProgWeb\features\Home\models\Home;
 
 class Profile
@@ -48,38 +49,67 @@ class Profile
     $stmt =  $this->pdo->prepare($query);
     $stmt->execute([$password, $user_id]);
   }
-  public function getCategory(){
+  public function getCategory()
+  {
     $query = "SELECT * FROM category";
     $stmt =  $this->pdo->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-    public function saveArticle($title, $content, $picture) {
-        $query = "INSERT INTO article (title, content, picture, date) VALUES (?, ?, ?, ?)";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$title, $content, $picture, date('Y-m-d')]);
-        return $this->pdo->lastInsertId();
+
+  public function saveArticle($title, $content, $picture, $category_id)
+  {
+    print($category_id);
+    echo $category_id;
+    // Cek jika category_id tidak NULL atau kosong
+    if (empty($category_id)) {
+      throw new \Exception('category_id cannot be null or empty');
+    }
+
+    // Menggunakan IntlDateFormatter untuk memformat tanggal dengan bahasa Indonesia
+    $fmt = new IntlDateFormatter('id_ID', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+    $fmt->setPattern('dd MMMM yyyy'); // Format '10 Mei 2025'
+
+    // Mendapatkan tanggal sekarang dalam format yang diinginkan
+    $date = $fmt->format(new \DateTime());
+
+    // Menyimpan artikel ke database
+    $query = "INSERT INTO article (title, content, picture, date) VALUES (?, ?, ?, ?)";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute([$title, $content, $picture, $date]);
+
+    // Mendapatkan ID artikel yang baru dimasukkan
+    $article_id = $this->pdo->lastInsertId();
+
+    $this->saveArticleCategory($article_id, $category_id);
+
+    return $article_id;
   }
 
+
   /// Butuh Memasukan data ke tabel relasinya juga
-  public function saveArticleAuthor($article_id, $user_id) {
-        $query = "INSERT INTO article_author (article_id, author_id) VALUES (?, ?)";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$article_id, $user_id]);
+  public function saveArticleAuthor($article_id, $user_id)
+  {
+    $query = "INSERT INTO article_author (article_id, author_id) VALUES (?, ?)";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute([$article_id, $user_id]);
   }
-  public function saveArticleCategory($article_id, $category_id) {
-        $query = "INSERT INTO article_category (article_id, category_id) VALUES (?, ?)";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute([$article_id, $category_id]);
+  public function saveArticleCategory($article_id, $category_id)
+  {
+    $query = "INSERT INTO article_category (article_id, category_id) VALUES (?, ?)";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute([$article_id, $category_id]);
   }
-  public function getIdByCategory($category){
+  public function getIdByCategory($category)
+  {
     $query = "SELECT id FROM category WHERE name = ?";
     $stmt =  $this->pdo->prepare($query);
     $stmt->execute([$category]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
-  public function getIdByArticle($title){
+  public function getIdByArticle($title)
+  {
     $query = "SELECT id FROM article WHERE title = ?";
     $stmt =  $this->pdo->prepare($query);
     $stmt->execute([$title]);
