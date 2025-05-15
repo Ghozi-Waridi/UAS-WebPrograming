@@ -26,6 +26,14 @@ class Home
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function getBeritaCarousel()
+  {
+    $query = "SELECT * FROM article WHERE status = 'approved' ORDER BY date DESC LIMIT 3 ;";
+    $stmt = $this->pdo->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+
   public function getBeritaByCategory($categoryId)
   {
 

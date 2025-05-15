@@ -18,6 +18,7 @@ class HomeController
   public function index()
   {
     $berita = $this->homeModel->getBeritaPilihan();
+    $beritaCarousel = $this->homeModel->getBeritaCarousel();
     $category2 = $this->homeModel->getAllCategory();
     $beritaByCategory = null;
     $category = 'all';

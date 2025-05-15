@@ -116,16 +116,22 @@ class Profile
     $stmt->execute([$title]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
-public function updateArticle($articleId, $title, $content, $fileName, $categoryId)
-{
-  try {
-    $query = "UPDATE articles SET title = ?, content = ?, image = COALESCE(?, image), category_id = ? WHERE id = ?";
+  public function updateCategory($article_id, $category_id, $value)
+  {
+    $query = "UPDATE article_category SET category_id = ? WHERE article_id = ?";
     $stmt = $this->pdo->prepare($query);
-    $stmt->execute([$title, $content, $fileName, $categoryId, $articleId]);
-    return true;
-  } catch (\PDOException $e) {
-    error_log("Error updating article: " . $e->getMessage());
-    throw new Exception("Gagal memperbarui artikel: " . $e->getMessage());
+    $stmt->execute([$category_id, $article_id]);
   }
-}
+  public function updateArticle($articleId, $title, $content, $fileName)
+  {
+    try {
+      $query = "UPDATE article SET title = ?, content = ?, picture = COALESCE(?, picture) WHERE id = ?";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->execute([$title, $content, $fileName, $articleId]);
+      return true;
+    } catch (\PDOException $e) {
+      error_log("Error updating article: " . $e->getMessage());
+      throw new Exception("Gagal memperbarui artikel: " . $e->getMessage());
+    }
+  }
 }

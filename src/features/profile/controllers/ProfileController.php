@@ -180,6 +180,7 @@ class ProfileController
     if ($articleId) {
       print("Melakukan Update");
       $this->profileModel->updateArticle($articleId, $title, $content, $fileName, $categoryId);
+      $this->profileModel->updateCategory($articleId, $categoryId, $category);
     } else {
       print("Melakukan Penambahan Data");
       $articleId = $this->profileModel->saveArticle($title, $content, $fileName, $categoryId);
