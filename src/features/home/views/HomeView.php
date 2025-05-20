@@ -7,6 +7,7 @@ ob_start(); ?>
 
   <!-- Hero Section -->
   <div class="relative w-full max-w-6xl mx-auto">
+
     <!-- Carousel Container -->
     <div class="overflow-hidden relative h-auto min-h-[400px]">
       <div class="carousel flex transition-transform duration-500 ease-in-out">
@@ -86,7 +87,7 @@ ob_start(); ?>
 
     <div class="lg:col-span-3 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
       <h3 class="text-2xl font-semibold text-gray-800 mb-4">Berita Terbaru</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
 
         <?php if ($beritaByCategory): ?>

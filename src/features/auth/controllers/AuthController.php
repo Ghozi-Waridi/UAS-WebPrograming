@@ -50,9 +50,8 @@ class AuthController
 
 
     if (isset($_SESSION['user_id'])) {
-
       header('Location: /');
-      exit();
+      exit;
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -61,6 +60,11 @@ class AuthController
 
 
       $user = $this->authModel->getUserByEmail($email);
+      if (!$user) {
+        $_SESSION['error'] = 'Email tidak ditemukan!';
+        header('Location: /login');
+        exit;
+      }
       $_SESSION['imageProfile'] = $user['image'];
       if ($user) {
         if ($user['email'] == "admin@gmail.com") {
@@ -92,8 +96,6 @@ class AuthController
             $_SESSION['error'] = 'Password salah!';
           }
         }
-      } else {
-        $_SESSION['error'] = 'Email tidak ditemukan!';
       }
     }
     $this->showLoginForm();
