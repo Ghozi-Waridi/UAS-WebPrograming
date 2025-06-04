@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Uas_ProgWeb\features\kategori\controllers;
 
 use PDO;
@@ -18,21 +16,42 @@ class KategoriController
 
   public function index()
   {
-
     $category = $this->kategoriModel->getAllCategory();
-    require '/../views/KategoriView.php';
+
+    require __DIR__ . '/../views/KategoriView.php';
   }
 
-  public function store()
+  public function showArticlesByCategory($categoryName)
   {
+    // Decode URL-encoded category name if needed
+    $categoryName = urldecode($categoryName);
+    echo "Category: $categoryName\n";
 
-    if (isset($_POST['category'])) {
-      $category = $_POST['category'];
-      $articles = $this->kategoriModel->getArticleByCategory($category);
-      require '/../views/listArtikelView.php';
-    } else {
+    // Validate category exists
+    /* $categoryExists = $this->kategoriModel->categoryExists($categoryName); */
+    /* echo "Category exists: " . ($categoryExists ). "\n"; */
+    /* if (!$categoryExists) { */
+    /*   echo "Category not found!"; */
+    /*   return; */
+    /* } */
 
-      echo "No category selected!";
-    }
+
+    /* $itemsPerPage = 5; */
+    /* $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1; */
+    /* echo  "Current page: $currentPage\n"; */
+    /* $currentPage = max(1, $currentPage); */
+    /* echo "Current page after max check: $currentPage\n"; */
+    /* $offset = ($currentPage - 1) * $itemsPerPage; */
+    /* echo "offset $offset"; */
+
+
+    $articles = $this->kategoriModel->getArticleByCategory($categoryName);
+    /* print_r($articles); */
+    /* $totalArticles = $this->kategoriModel->getArticleCountByCategory($categoryName); */
+    /* print_r($totalArticles); */
+    /* $totalPages = ceil($totalArticles / $itemsPerPage); */
+    /* print_r($totalPages); */
+
+    require __DIR__ . '/../views/listArtikelView.php';
   }
 }

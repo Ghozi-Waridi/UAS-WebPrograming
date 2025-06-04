@@ -44,7 +44,7 @@ class Home
                                JOIN author au ON aa.author_id = au.id
                                JOIN article_category ac ON a.id = ac.article_id
                                JOIN category c ON ac.category_id = c.id
-                               WHERE a.status = 'approved';");
+                               WHERE a.status = 'approved' LIMIT 5;");
       return $stmt->fetchAll();
     } else {
       $stmt = $this->pdo->prepare("SELECT a.id, a.title, a.content, a.picture, a.date, au.nickname, c.name as category_name
@@ -53,7 +53,7 @@ class Home
                                  JOIN author au ON aa.author_id = au.id
                                  JOIN article_category ac ON a.id = ac.article_id
                                  JOIN category c ON ac.category_id = c.id
-                                 WHERE c.name = ? AND a.status = 'approved';");
+                                 WHERE c.name = ? AND a.status = 'approved' LIMIT 5;");
       $stmt->execute([$categoryId]);
       return $stmt->fetchAll();
     }

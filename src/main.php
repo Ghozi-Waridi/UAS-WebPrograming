@@ -4,6 +4,12 @@ if (!isset($_SESSION)) {
 }
 $home = isset($home) ? $home : '';
 $content = isset($content) ? $content : '';
+$detail = isset($detail) ? $detail : '';
+$profile = isset($profile) ? $profile : '';
+$category2 = isset($category2) ? $category2 : '';
+$articleDetailCategory = isset($articleDetailCategory) ? $articleDetailCategory : '';
+
+
 ?>
 
 <!DOCTYPE html>
@@ -57,13 +63,16 @@ $content = isset($content) ? $content : '';
   <div class="flex bg-blue-900 p-6 w-full justify-center items-center">
     <img src="/assets/images/logo.png" alt="Logo" class="w-16 h-16 inline-block">
     <h1 class="ml-4 text-white font-extrabold text-2xl">NusantaraIN</h1>
-  </div>
+    </div>
+
+
+
   <?= isset($home) ? $home : ''; ?>
 
   <?= isset($detail) ? $detail : ''; ?>
   <?= isset($profile) ? $profile : ''; ?>
+  <?= $category2 ?>
 
-  <?= isset($category2) ? $category2 : '' ?>
   <?= isset($articleDetailCategory) ? $articleDetailCategory : "" ?>
 
 
@@ -74,7 +83,7 @@ $content = isset($content) ? $content : '';
         <h3 class="text-lg font-semibold text-gray-800 mb-2">Follow Us</h3>
         <div class="flex justify-center space-x-4">
           <a href="https://twitter.com/" class="text-gray-600 hover:text-blue-500 transition-colors" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-twitter text-2xl"></i>
+            <i class="fab fa-twitter ext-2xl"></i>
           </a>
           <a href="https://facebook.com/" class="text-gray-600 hover:text-blue-700 transition-colors" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-facebook text-2xl"></i>
