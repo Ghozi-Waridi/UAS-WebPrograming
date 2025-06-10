@@ -71,7 +71,22 @@ class DasboardController
       echo "Error approving the article.";
     }
   }
-  public function logout()
+  
+    public function deleteArticle()
+    {
+        $articleId = $_POST['article_id'] ?? null;
+
+        $isDeleted = $this->dasboardModel->deleteArticle($articleId);
+
+        if ($isDeleted) {
+            header('Location: /dashboard');
+            exit;
+        } else {
+            echo "Error deleting the article.";
+        }
+    }
+
+   public function logout()
   {
 
     session_destroy();

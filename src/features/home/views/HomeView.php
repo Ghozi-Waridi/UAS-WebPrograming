@@ -68,45 +68,54 @@ ob_start(); ?>
 
 
   <!-- Footer Navigation -->
-  <div class="bg-white shadow-lg rounded-lg mt-10 mb-10">
+<!-- <div class="bg-white shadow-lg rounded-lg mt-10 mb-10"> -->
+<!--     <div class="flex flex-wrap justify-center sm:justify-between items-center px-6 py-4 space-x-4 sm:space-x-6"> -->
+<!--         <form action="/" method="POST" class="flex flex-wrap gap-4 items-center"> -->
+<!--             <input type="text" name="search" placeholder="Search..." class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"> -->
+<!--             <input type="submit" name="category" value="all" class="hover:text-white px-4 py-2 rounded-lg hover:bg-blue-600"> -->
+<!--             <?php foreach ($category2 as $item): ?> -->
+<!--                 <input type="submit" name="category" value="<?= $item['name'] ?>" class="hover:text-white px-4 py-2 rounded-lg hover:bg-blue-600"> -->
+<!--             <?php endforeach; ?> -->
+<!--         </form> -->
+<!--     </div> -->
+<!-- </div> -->
+
+
+
+<div class="bg-white shadow-lg rounded-lg mt-10 mb-10">
     <div class="flex flex-wrap justify-center sm:justify-between items-center px-6 py-4 space-x-4 sm:space-x-6">
-
-
-      <form action="/" method="POST">
-        <input type="submit" name="category" value="all" class=" hover:text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-        <?php foreach ($category2 as $item): ?>
-          <input type="submit" name="category" value="<?= $item['name'] ?>" class=" hover:text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-        <?php endforeach; ?>
-      </form>
+        <form action="/" method="POST" class="flex flex-wrap gap-4 items-center">
+            <input type="text" name="search" placeholder="Search by title..." value="<?= htmlspecialchars($searchTerm ?? '') ?>" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <input type="submit" name="category" value="all" class="hover:text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            <?php foreach ($category2 as $item): ?>
+                <input type="submit" name="category" value="<?= htmlspecialchars($item['name']) ?>" class="hover:text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+            <?php endforeach; ?>
+        </form>
     </div>
-  </div>
+</div>
 
-
-
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-6 py-6">
-
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 sm:px-6 py-6">
     <div class="lg:col-span-3 bg-white p-4 sm:p-6 rounded-lg shadow-lg">
-      <h3 class="text-2xl font-semibold text-gray-800 mb-4">Berita Terbaru</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-
-        <?php if ($beritaByCategory): ?>
-          <?php foreach ($beritaByCategory as $item): ?>
-            <a href="/detail/<?= $item['id'] ?>">
-              <div class="bg-blue-100 p-4 rounded-lg shadow-lg flex flex-col">
-                <img src="/uploads/<?= $item['picture'] ?>" alt="Spiral Design" class="w-full h-48 sm:h-40 object-cover rounded-lg shadow">
-                <h4 class="text-xl font-semibold text-gray-800 mb-2"><?= $item['title'] ?></h4>
-                <p class="text-gray-600 text-sm sm:text-base"><?= substr(strip_tags($item['content']), 0, 50) ?>...</p>
-              </div>
-            </a>
-          <?php endforeach; ?>
-
-        <?php else: ?>
-          <p class="text-gray-600">Tidak ada berita untuk kategori ini.</p>
-        <?php endif; ?>
-
-      </div>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+            <?= isset($searchTerm) ? 'Hasil Pencarian: ' . htmlspecialchars($searchTerm) : 'Berita Terbaru' ?>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <?php if ($beritaByCategory): ?>
+                <?php foreach ($beritaByCategory as $item): ?>
+                    <a href="/detail/<?= htmlspecialchars($item['id']) ?>">
+                        <div class="bg-blue-100 p-4 rounded-lg shadow-lg flex flex-col">
+                            <img src="/Uploads/<?= htmlspecialchars($item['picture']) ?>" alt="Article Image" class="w-full h-48 sm:h-40 object-cover rounded-lg shadow">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2"><?= htmlspecialchars($item['title']) ?></h4>
+                            <p class="text-gray-600 text-sm sm:text-base"><?= htmlspecialchars(substr(strip_tags($item['content']), 0, 50)) ?>...</p>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-gray-600">Tidak ada berita ditemukan.</p>
+            <?php endif; ?>
+        </div>
     </div>
+</div>
 
     <!-- Terpopuler -->
     <!-- <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg"> -->

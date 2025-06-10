@@ -17,7 +17,7 @@ class KategoriController
   public function index()
   {
     $category = $this->kategoriModel->getAllCategory();
-
+    /* echo gettype($category); */
     require __DIR__ . '/../views/KategoriView.php';
   }
 
@@ -25,7 +25,7 @@ class KategoriController
   {
     // Decode URL-encoded category name if needed
     $categoryName = urldecode($categoryName);
-    echo "Category: $categoryName\n";
+    /* echo "Category: $categoryName\n"; */
 
     // Validate category exists
     /* $categoryExists = $this->kategoriModel->categoryExists($categoryName); */
@@ -44,8 +44,9 @@ class KategoriController
     /* $offset = ($currentPage - 1) * $itemsPerPage; */
     /* echo "offset $offset"; */
 
-
+    
     $articles = $this->kategoriModel->getArticleByCategory($categoryName);
+    /* echo gettype($articles); */
     /* print_r($articles); */
     /* $totalArticles = $this->kategoriModel->getArticleCountByCategory($categoryName); */
     /* print_r($totalArticles); */

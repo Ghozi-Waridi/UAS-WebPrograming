@@ -6,7 +6,7 @@ $home = isset($home) ? $home : '';
 $content = isset($content) ? $content : '';
 $detail = isset($detail) ? $detail : '';
 $profile = isset($profile) ? $profile : '';
-$category2 = isset($category2) ? $category2 : '';
+/* $category2 = isset($category2) ? $category2 : ''; */
 $articleDetailCategory = isset($articleDetailCategory) ? $articleDetailCategory : '';
 
 
@@ -71,7 +71,7 @@ $articleDetailCategory = isset($articleDetailCategory) ? $articleDetailCategory 
 
   <?= isset($detail) ? $detail : ''; ?>
   <?= isset($profile) ? $profile : ''; ?>
-  <?= $category2 ?>
+  <?= isset($categorybanyak) ? $categorybanyak : "" ?>
 
   <?= isset($articleDetailCategory) ? $articleDetailCategory : "" ?>
 
@@ -91,7 +91,6 @@ $articleDetailCategory = isset($articleDetailCategory) ? $articleDetailCategory 
           <a href="https://instagram.com/" class="text-gray-600 hover:text-pink-500 transition-colors" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram text-2xl"></i>
           </a>
-
         </div>
       </div>
       <p class="text-gray-600">© 2025 NusantaraIN. All rights reserved.</p>

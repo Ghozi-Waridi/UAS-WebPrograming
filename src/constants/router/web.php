@@ -26,6 +26,7 @@ Router::add('POST', '/singup', AuthController::class, 'singup');
 Router::add('GET', '/dashboard', DasboardController::class, 'index');
 Router::add('GET', '/dashboard/(\w+)', DasboardController::class, 'loadContent');
 Router::add('POST', '/approveArticle', DasboardController::class, 'approveArticle');
+Router::add('POST', '/rejectArticle', DasboardController::class, 'deleteArticle');
 Router::add('GET', '/kategori', KategoriController::class, 'index');
 /* Router::add('POST', '/kategori', KategoriController::class, 'store'); */
 Router::add('GET', '/kategori/(\w+)', KategoriController::class, 'showArticlesByCategory');

@@ -9,7 +9,6 @@ class HomeController
 {
   private $homeModel;
 
-
   public function __construct(PDO $pdo)
   {
     $this->homeModel = new Home($pdo);
@@ -22,7 +21,12 @@ class HomeController
     $category2 = $this->homeModel->getAllCategory();
     $beritaByCategory = null;
     $category = 'all';
-    if (isset($_POST['category'])) {
+    $searchTerm = null;
+
+    if (isset($_POST['search']) && !empty(trim($_POST['search']))) {
+      $searchTerm = trim($_POST['search']);
+      $beritaByCategory = $this->homeModel->searchBeritaByTitle($searchTerm);
+    } elseif (isset($_POST['category'])) {
       $category = $_POST['category'];
       $beritaByCategory = $this->homeModel->getBeritaByCategory($category);
     } else {
@@ -31,7 +35,6 @@ class HomeController
 
     require __DIR__ . '/../views/HomeView.php';
   }
-
 
   public function store() {}
 }

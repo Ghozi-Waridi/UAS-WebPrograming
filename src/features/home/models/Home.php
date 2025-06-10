@@ -15,10 +15,11 @@ class Home
 
   public function getBeritaPilihan()
   {
-    $query = "SELECT * FROM article WHERE status = 'approved' ORDER BY date DESC LIMIT 5  ;";
+    $query = "SELECT * FROM article WHERE status = 'approved' ORDER BY date DESC LIMIT 5;";
     $stmt = $this->pdo->query($query);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
+
   public function getAllCategory()
   {
     $query = "SELECT * FROM category";
@@ -28,15 +29,13 @@ class Home
 
   public function getBeritaCarousel()
   {
-    $query = "SELECT * FROM article WHERE status = 'approved' ORDER BY date DESC LIMIT 3 ;";
+    $query = "SELECT * FROM article WHERE status = 'approved' ORDER BY date DESC LIMIT 3;";
     $stmt = $this->pdo->query($query);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-
   public function getBeritaByCategory($categoryId)
   {
-
     if ($categoryId == 'all') {
       $stmt = $this->pdo->query("SELECT a.id, a.title, a.content, a.picture, a.date, au.nickname, c.name as category_name
                                FROM article a
@@ -57,5 +56,18 @@ class Home
       $stmt->execute([$categoryId]);
       return $stmt->fetchAll();
     }
+  }
+
+  public function searchBeritaByTitle($searchTerm)
+  {
+    $stmt = $this->pdo->prepare("SELECT a.id, a.title, a.content, a.picture, a.date, au.nickname, c.name as category_name
+                               FROM article a
+                               JOIN article_author aa ON a.id = aa.article_id
+                               JOIN author au ON aa.author_id = au.id
+                               JOIN article_category ac ON a.id = ac.article_id
+                               JOIN category c ON ac.category_id = c.id
+                               WHERE a.status = 'approved' AND a.title LIKE ? LIMIT 5;");
+    $stmt->execute(['%' . $searchTerm . '%']);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }

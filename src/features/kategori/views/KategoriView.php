@@ -20,5 +20,5 @@
   </div>
 </div>
 
-<?php $category2 = ob_get_clean(); ?>
+<?php $categorybanyak = ob_get_clean(); ?>
 <?php require __DIR__ . '/../../../main.php'; ?>

@@ -1,5 +1,5 @@
 <?php
-$host = "127.0.0.1"; // <- fix IP localhost
+$host = "127.0.0.1"; 
 $dbname = "newsPortal";
 $username = "root";
 $password = "";
@@ -10,13 +10,4 @@ try {
 } catch (PDOException $e) {
   die("Connection failed: " . $e->getMessage());
 }
-/* $host = "127.0.1"; // localhost */
-/* $dbname = "newsPortal"; */
-/* $username = "root"; */
-/* $password = ""; */
-/**/
-/* $conn = new mysqli($host, $username, $password, $dbname); */
-/**/
-/* if ($conn->connect_error) { */
-/*   die("Connection failed: " . $conn->connect_error); */
-/* } */
+

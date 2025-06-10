@@ -7,48 +7,44 @@ use Uas_ProgWeb\features\DetailArticle\models\DetailArticle;
 
 class DetailArticleController
 {
-  private $detailModel;
+    private $detailModel;
 
-  public function __construct(PDO $pdo)
-  {
-    $this->detailModel = new DetailArticle($pdo);
-  }
-
-
-    public function index($id = null)
+    public function __construct(PDO $pdo)
     {
-        // Debug: Tampilkan ID yang diterima
-//        echo "Received ID: " . $id . "<br>";
+        $this->detailModel = new DetailArticle($pdo);
+    }
+
+    public function index($id = null, $searchQuery = null)
+    {
+        // Ambil parameter pencarian dari query string
+        $searchQuery = $_GET['query'] ?? null;
+
+        // Jika ada query pencarian, tampilkan hasil pencarian
+        if ($searchQuery) {
+            $searchResults = $this->detailModel->searchArticles($searchQuery);
+            require __DIR__ . '/../views/DetailArticleView.php';
+            return;
+        }
 
         // Memastikan ID artikel valid
         if (!$id || !is_numeric($id)) {
             http_response_code(400);
-//            echo "400 Bad Request: ID artikel tidak ditemukan";
             return;
         }
 
         // Ambil artikel berdasarkan ID
         $article = $this->detailModel->getArticleById($id);
 
-        // Debug: Cek apakah artikel ditemukan
+        // Cek apakah artikel ditemukan
         if (!$article) {
             http_response_code(404);
-//            echo "404 Not Found: Artikel tidak ditemukan";
             return;
         }
 
-
-        // Debug: Tampilkan artikel yang ditemukan
-//        echo "<pre>";
-//        print_r($article);
-//        echo "</pre>";
-
-
-
-
+        // Ambil artikel terkait berdasarkan kategori
+        $relatedArticles = $this->detailModel->getRelatedArticles($article['category_name'], $id);
 
         // Tampilkan tampilan artikel
         require __DIR__ . '/../views/DetailArticleView.php';
     }
-
 }
