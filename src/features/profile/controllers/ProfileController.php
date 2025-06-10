@@ -12,6 +12,7 @@ class ProfileController
   private $profileModel;
 
 
+
   public function __construct(PDO $pdo)
   {
     $this->profileModel = new Profile($pdo);
@@ -192,4 +193,5 @@ class ProfileController
 
     return $articleId;
   }
+
 }

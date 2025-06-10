@@ -243,30 +243,32 @@
     <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <?php foreach ($profileArticle as $article) : ?>
 
-
-      <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl">
-   <a href="/detail/<?= $article['id'] ?>">
-          <img src="/uploads/<?= htmlspecialchars($article['picture']) ?>" alt="article image" class="w-full h-48 object-cover rounded-t-lg">
-          <div class="p-6">
+<div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 hover:shadow-2xl">
+    <a href="/detail/<?= $article['id'] ?>">
+        <img src="/Uploads/<?= htmlspecialchars($article['picture']) ?>" alt="article image" class="w-full h-48 object-cover rounded-t-lg">
+        <div class="p-6">
             <h3 class="mt-4 text-xl font-semibold text-gray-800"><?= htmlspecialchars(substr(strip_tags($article['content']), 0, 100)) ?>...</h3>
             <div class="mt-4 text-sm text-gray-500 flex justify-between items-center">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-            <?php echo $article['status'] == 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'; ?>">
-                <?= htmlspecialchars($article['status']) ?>
-              </span> <span class="text-gray-400"><?= htmlspecialchars($article['date']) ?></span>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                <?php echo $article['status'] == 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'; ?>">
+                    <?= htmlspecialchars($article['status']) ?>
+                </span>
+                <span class="text-gray-400"><?= htmlspecialchars($article['date']) ?></span>
             </div>
-
-          </div>
-    </a> 
-<button class="edit-article-btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out m-2" 
-          data-id="<?= $article['id']?>" 
-          data-title="<?= $article['title']?>" 
-          data-content="<?= $article['content'] ?>" 
-          data-picture="/uploads/<?= $article['picture']?>">
-    Edit
-  </button>
-
         </div>
+    </a>
+    <button class="edit-article-btn bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out m-2" 
+            data-id="<?= $article['id']?>" 
+            data-title="<?= $article['title']?>" 
+            data-content="<?= $article['content'] ?>" 
+            data-picture="/Uploads/<?= $article['picture']?>">
+        Edit
+    </button>
+    <button class="delete-article-btn bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out m-2" 
+            data-id="<?= $article['id']?>">
+        Delete
+    </button>
+</div>
 
       <?php endforeach; ?>
     </div>
@@ -411,6 +413,35 @@ inputGambar.addEventListener('change', function() {
 // Menangani submit form
 document.getElementById('saveBtn').addEventListener('click', function() {
   document.getElementById('articleForm').submit();
+});
+
+
+document.querySelectorAll('.delete-article-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const articleId = this.getAttribute('data-id');
+        if (confirm('Apakah Anda yakin ingin menghapus artikel ini?')) {
+            fetch('/profile/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `article_id=${articleId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Artikel berhasil dihapus.');
+                    location.reload();
+                } else {
+                    alert('Gagal menghapus artikel: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat menghapus artikel.');
+            });
+        }
+    });
 });
 </script>
 <?php $profile = ob_get_clean(); ?>

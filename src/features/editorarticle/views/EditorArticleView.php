@@ -1,5 +1,9 @@
 
-  <!-- Modal Content -->
+<!-- Modal Content -->
+
+  <div id="articleModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <!-- Overlay -->
+    <div class="modal-overlay absolute inset-0" id="modalOverlay"></div>
     <div class="modal-container bg-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-hidden">
       <!-- Modal Header -->
       <div class="modal-header py-4 px-6 bg-gray-50 border-b flex items-center justify-between">
@@ -110,7 +114,7 @@
         </button>
       </div>
     </div>
-
+          </div>
   <script>
     // Inisialisasi CKEditor
     ClassicEditor
