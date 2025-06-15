@@ -55,9 +55,13 @@ Ikuti langkah-langkah ini untuk mengatur proyek secara lokal.
    composer start
    
 10. **Akses Website:**
-
     ```bash
     http://localhost:8000
+12. **Generate Feature:**
+    ```bash
+    python3 generate.py
+
+
 
 ### **Struktur Folder dan Penjelasan:**
 ## Struktur Folder
@@ -66,11 +70,10 @@ Berikut adalah struktur folder proyek ini:
 
 ```
 .
-├── assets/             # Folder untuk file statis seperti gambar\
-│   └── images/         # Berisi gambar-gambar yang digunakan di halaman web
 ├── config/             # Folder untuk file konfigurasi seperti koneksi database dan pengaturan aplikasi
 │   └── database.php    # Konfigurasi untuk menghubungkan ke database MySQL
 ├── public/             # Folder untuk file yang dapat diakses oleh pengguna, seperti file HTML dan index.php
+|   ├── assets/             # Folder untuk file statis seperti gambar\
 │   ├── css/            # Berisi file CSS untuk desain tampilan website
 │   ├── js/             # Berisi file JavaScript untuk interaktivitas
 │   └── index.php       # Halaman utama website yang menampilkan daftar berita
@@ -90,21 +93,16 @@ Berikut adalah struktur folder proyek ini:
 ├── vendor/             # Folder yang berisi dependensi (diinstal melalui Composer) - tidak perlu di-*track* oleh Git
 ├── .gitignore          # File untuk menentukan file/folder yang tidak perlu dimasukkan ke dalam kontrol versi Git
 ├── composer.json       # File konfigurasi Composer untuk mengelola dependensi PHP
+├── generate.py         # File Mmebuat Featuer MVC
 └── composer.lock       # File yang mengunci versi dependensi agar konsisten di berbagai lingkungan
+
 ```
 ### **Penjelasan:**
 
+
+
 ```
 .
-├── assets/             # Folder untuk file statis seperti gambar\
-│   └── images/         # Berisi gambar-gambar yang digunakan di halaman web
-```
-- **`assets/`**: Folder ini menyimpan semua file statis yang digunakan oleh aplikasi, seperti gambar, CSS, dan JavaScript.
-- **`images/`**: Berisi gambar-gambar yang digunakan untuk konten di halaman web (misalnya, logo, gambar artikel, dll.).
-
----
-
-```
 ├── config/             # Folder untuk file konfigurasi seperti koneksi database dan pengaturan aplikasi
 │   └── database.php    # Konfigurasi untuk menghubungkan ke database MySQL
 ```
@@ -115,11 +113,13 @@ Berikut adalah struktur folder proyek ini:
 
 ```
 ├── public/             # Folder untuk file yang dapat diakses oleh pengguna, seperti file HTML dan index.php
+|   ├── assets/             # Folder untuk file statis seperti gambar\
 │   ├── css/            # Berisi file CSS untuk desain tampilan website
 │   ├── js/             # Berisi file JavaScript untuk interaktivitas
 │   └── index.php       # Halaman utama website yang menampilkan daftar berita
 ```
 - **`public/`**: Ini adalah folder yang diakses langsung oleh pengguna melalui browser. Semua file yang bisa diakses oleh pengguna (seperti halaman HTML atau PHP) harus ada di sini.
+- **`assets/`**: Folder ini menyimpan semua file statis yang digunakan oleh aplikasi, seperti gambar.
 - **`css/`**: Folder ini berisi file CSS yang digunakan untuk mendesain dan mengatur tampilan website.
 - **`js/`**: Folder ini berisi file JavaScript yang memberikan interaktivitas pada website (misalnya, fungsi untuk mengubah konten dinamis, mengatur tampilan halaman, dll.).
 - **`index.php`**: Halaman utama dari website yang menampilkan daftar berita atau konten lainnya.
@@ -167,9 +167,11 @@ Berikut adalah struktur folder proyek ini:
 
 ```
 ├── composer.json       # File konfigurasi Composer untuk mengelola dependensi PHP
+├── generate.py         # File Mmebuat Featuer MVC
 └── composer.lock       # File yang mengunci versi dependensi agar konsisten di berbagai lingkungan       
 ```
-- **`composer.json`**: File konfigurasi untuk Composer, yang mendefinisikan dependensi PHP yang dibutuhkan aplikasi. 
+- **`composer.json`**: File konfigurasi untuk Composer, yang mendefinisikan dependensi PHP yang dibutuhkan aplikasi.
+- **`generate.py`**: File Generate feature MVC dengan memasukan nama featurenya 
 - **`composer.lock`**: File ini mengunci versi dari dependensi yang digunakan dalam proyek, untuk memastikan bahwa setiap pengembang menggunakan versi dependensi yang sama.
 
 ---
@@ -306,8 +308,8 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 ### 👤 Halaman Profil Pengguna
+<img src="https://github.com/user-attachments/assets/59a57f96-f3c1-4944-badb-a8acb468ab4f" width="100%" />
 
-<img src="https://github.com/user-attachments/assets/3d9828d0-052d-4de5-9b28-33e4fcd1c5b1" width="100%" />
 
 - Tampilkan data pribadi.
 - Edit profil dan ubah password.
@@ -315,8 +317,8 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 ### ✍️ Kelola Artikel Pengguna
+<img src="https://github.com/user-attachments/assets/3d9828d0-052d-4de5-9b28-33e4fcd1c5b1" width="100%" />
 <img width="100%" alt="Jepretan Layar 2025-06-15 pukul 10 03 09" src="https://github.com/user-attachments/assets/6e04d982-94f5-4224-84e5-9b4b4bfa81f6" />
-<img src="https://github.com/user-attachments/assets/59a57f96-f3c1-4944-badb-a8acb468ab4f" width="100%" />
 <img src="https://github.com/user-attachments/assets/638059bf-cd11-4d8c-9f13-1b7ff75e9ed8" width="45%" />  
 <img src="https://github.com/user-attachments/assets/10b1ca01-f039-4fc6-a88c-4334cae810c6" width="45%" />
 
