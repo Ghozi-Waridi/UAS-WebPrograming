@@ -296,7 +296,9 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 ### 🔐 Autentikasi Pengguna
-<img src="https://github.com/user-attachments/assets/59a57f96-f3c1-4944-badb-a8acb468ab4f" width="100%" />
+
+<img width="1440" alt="Jepretan Layar 2025-06-15 pukul 10 01 45" src="https://github.com/user-attachments/assets/fa6e17ff-45d0-40f5-9885-1ffaf41a87c7" />
+<img width="1391" alt="Jepretan Layar 2025-06-15 pukul 10 02 06" src="https://github.com/user-attachments/assets/8c9d789d-fd4c-4e15-8ea5-e4d455a4f108" />
 
 - Validasi login dan registrasi pengguna.
 - Feedback kesalahan dan keberhasilan ditampilkan dengan jelas.
@@ -304,6 +306,7 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 ### 👤 Halaman Profil Pengguna
+
 <img src="https://github.com/user-attachments/assets/3d9828d0-052d-4de5-9b28-33e4fcd1c5b1" width="100%" />
 
 - Tampilkan data pribadi.
@@ -312,6 +315,8 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 ### ✍️ Kelola Artikel Pengguna
+<img width="100%" alt="Jepretan Layar 2025-06-15 pukul 10 03 09" src="https://github.com/user-attachments/assets/6e04d982-94f5-4224-84e5-9b4b4bfa81f6" />
+<img src="https://github.com/user-attachments/assets/59a57f96-f3c1-4944-badb-a8acb468ab4f" width="100%" />
 <img src="https://github.com/user-attachments/assets/638059bf-cd11-4d8c-9f13-1b7ff75e9ed8" width="45%" />  
 <img src="https://github.com/user-attachments/assets/10b1ca01-f039-4fc6-a88c-4334cae810c6" width="45%" />
 
@@ -344,16 +349,14 @@ Berikut adalah struktur folder proyek ini:
 ## 🚧 Fitur yang Akan Datang
 
 - 🔎 Sistem pencarian artikel yang lebih canggih.
-- 📝 Rich text editor untuk pembuatan artikel.
-- 📊 Dashboard statistik pengguna dan artikel.
 
 ---
 
 ## 🛠️ Teknologi yang Digunakan
 
-- Frontend: HTML, CSS, JavaScript (Framework opsional jika digunakan)
-- Backend: (Contoh: Node.js, Laravel, atau lainnya)
-- Database: (Contoh: MySQL, MongoDB, dsb)
+- Frontend: HTML, CSS, JavaScrip.
+- Backend: PHP Native
+- Database: MySQL
 
 ---
 
@@ -367,19 +370,13 @@ Kontribusi sangat terbuka! Jika kamu memiliki ide untuk fitur baru atau ingin me
 
 Jika kamu memiliki saran, masukan, atau ide untuk fitur pencarian, silakan hubungi saya melalui:
 
-- 📧 Email: [youremail@example.com]
-- 📱 Instagram: [@yourhandle]
-- 💬 Telegram: [@yourhandle]
+- 📧 Email: [ghoziwaridi@gmail.com]
+- 📱 Instagram: [https://www.instagram.com/ahmad.ghozi.waridi/]
+
 
 ---
 
-## 📄 Lisensi
-
-Proyek ini berada di bawah lisensi MIT. Silakan gunakan, modifikasi, dan distribusikan dengan bebas.
-
----
-
-> Dibuat dengan ❤️ oleh [Nama Kamu]
+> Dibuat dengan ❤️ oleh [AHMAD GHOZI WARIDI]
 
 
 
