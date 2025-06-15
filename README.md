@@ -249,4 +249,138 @@ Berikut adalah struktur folder proyek ini:
 ---
 
 
+# 📰 Artikelku - Platform Berbagi Artikel Modern
+
+![GitHub repo size](https://img.shields.io/github/repo-size/username/repo-name?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/username/repo-name?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/username/repo-name?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/username/repo-name?style=for-the-badge)
+
+**Artikelku** adalah platform berbagi artikel modern yang dirancang untuk memberikan pengalaman menulis, membaca, dan mengelola artikel yang nyaman, baik bagi pengguna umum maupun admin.
+
+---
+
+## ✨ Fitur Utama
+
+### 🔝 Halaman Utama
+<img src="https://github.com/user-attachments/assets/ab9f2064-1e53-419a-bdcf-06362c8d3b71" width="100%" />
+
+- Navigasi sederhana dengan menu **Beranda** dan **Kategori**.
+- Carousel 3 artikel terbaru yang sedang booming.
+- Akses login ke profil pengguna di pojok kanan atas.
+
+---
+
+### 🔥 Artikel Populer Hari Ini
+<img src="https://github.com/user-attachments/assets/84d2a813-41f2-42db-88fa-aa6550ef83bd" width="80%" />
+
+- Menampilkan artikel yang sedang trending setelah carousel.
+
+---
+
+### 📖 Halaman Detail Artikel
+<img src="https://github.com/user-attachments/assets/1e85aa29-ba8b-4c19-84e8-e584f2334652" width="100%" />
+
+- Membaca artikel secara penuh.
+- Menampilkan artikel terkait berdasarkan kategori.
+- *Catatan:* Fitur pencarian masih dalam pengembangan — saran dan kontribusi sangat diharapkan!
+
+---
+
+### 🗂️ Filter Berdasarkan Kategori
+<img src="https://github.com/user-attachments/assets/c758e2f8-ea1c-4981-a118-09b7e6d5017d" width="100%" />
+
+- Tombol kategori akan memfilter dan menampilkan semua artikel dalam kategori tersebut.
+- Fitur pencarian juga tersedia (dalam pengembangan).
+
+---
+
+### 🔐 Autentikasi Pengguna
+<img src="https://github.com/user-attachments/assets/59a57f96-f3c1-4944-badb-a8acb468ab4f" width="100%" />
+
+- Validasi login dan registrasi pengguna.
+- Feedback kesalahan dan keberhasilan ditampilkan dengan jelas.
+
+---
+
+### 👤 Halaman Profil Pengguna
+<img src="https://github.com/user-attachments/assets/3d9828d0-052d-4de5-9b28-33e4fcd1c5b1" width="100%" />
+
+- Tampilkan data pribadi.
+- Edit profil dan ubah password.
+
+---
+
+### ✍️ Kelola Artikel Pengguna
+<img src="https://github.com/user-attachments/assets/638059bf-cd11-4d8c-9f13-1b7ff75e9ed8" width="45%" />  
+<img src="https://github.com/user-attachments/assets/10b1ca01-f039-4fc6-a88c-4334cae810c6" width="45%" />
+
+- Lihat semua artikel yang telah dibuat.
+- Tambah artikel baru melalui pop-up editor.
+- Status artikel:
+  - ✅ **Approved** (Hijau): Artikel diterima admin.
+  - ⏳ **Pending** (Kuning): Artikel menunggu persetujuan.
+
+---
+
+### 🧑‍💼 Dashboard Admin
+<img src="https://github.com/user-attachments/assets/1020bb1b-43e6-47dd-ac7c-5dd43674de6a" width="100%" />
+
+- Admin dapat mengelola:
+  - Data pengguna.
+  - Persetujuan artikel.
+  - Penghapusan artikel.
+
+<img src="https://github.com/user-attachments/assets/1b455666-e4ac-40a2-9bdb-7c71ab4905ab" width="100%" />
+
+- Statistik jumlah artikel per pengguna.
+
+<img src="https://github.com/user-attachments/assets/9e67728b-b8e2-4cb5-b0f9-2fe4a7260c10" width="100%" />
+
+- Lihat dan kelola daftar artikel yang menunggu persetujuan.
+
+---
+
+## 🚧 Fitur yang Akan Datang
+
+- 🔎 Sistem pencarian artikel yang lebih canggih.
+- 📝 Rich text editor untuk pembuatan artikel.
+- 📊 Dashboard statistik pengguna dan artikel.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- Frontend: HTML, CSS, JavaScript (Framework opsional jika digunakan)
+- Backend: (Contoh: Node.js, Laravel, atau lainnya)
+- Database: (Contoh: MySQL, MongoDB, dsb)
+
+---
+
+## 🧑‍💻 Kontribusi
+
+Kontribusi sangat terbuka! Jika kamu memiliki ide untuk fitur baru atau ingin memperbaiki bug, silakan buat pull request atau buka issue terlebih dahulu.
+
+---
+
+## 📫 Kontak
+
+Jika kamu memiliki saran, masukan, atau ide untuk fitur pencarian, silakan hubungi saya melalui:
+
+- 📧 Email: [youremail@example.com]
+- 📱 Instagram: [@yourhandle]
+- 💬 Telegram: [@yourhandle]
+
+---
+
+## 📄 Lisensi
+
+Proyek ini berada di bawah lisensi MIT. Silakan gunakan, modifikasi, dan distribusikan dengan bebas.
+
+---
+
+> Dibuat dengan ❤️ oleh [Nama Kamu]
+
+
+
 
